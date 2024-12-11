@@ -20,14 +20,10 @@
             >They provided the following reason and message for you:</mj-text
           >
 
-          <mj-text mj-class="text paragraph"
-            ><em>${reasonForDecline}</em></mj-text
-          >
-          <mj-text mj-class="text paragraph"
-            ><em>${optionalMessageToMentee}</em></mj-text
-          >
+          <mj-text mj-class="text quote">${reasonForDecline}</mj-text>
+          <mj-text mj-class="text quote">${optionalMessageToMentee}</mj-text>
 
-          <mj-text mj-class="text paragraph"
+          <mj-text mj-class="text paragraph" padding="20px 0"
             >Even if this match did not work out, we still have many amazing
             mentors waiting for your application. So please have a look and
             apply to another mentor who might be an even better match for

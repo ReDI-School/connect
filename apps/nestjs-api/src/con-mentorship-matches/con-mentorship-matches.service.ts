@@ -249,6 +249,7 @@ export class ConMentorshipMatchesService {
       menteeFullName: menteeProfile.props.fullName,
       menteeRediLocation: menteeProfile.props.rediLocation,
       rediLocation: mentorProfile.props.rediLocation,
+      applicationText: input.applicationText,
     })
 
     return result
