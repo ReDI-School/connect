@@ -78,16 +78,6 @@ function Profile() {
   const userCanApplyForMentorship =
     !isAcceptedMatch && currentUserIsMentee && !hasOpenApplication
 
-  const contactInfoAvailable =
-    profile &&
-    (profile.firstName ||
-      profile.lastName ||
-      profile.email ||
-      profile.telephoneNumber ||
-      profile.linkedInProfileUrl ||
-      profile.githubProfileUrl ||
-      profile.slackUsername)
-
   const shouldHidePrivateContactInfo = currentUserIsMentee && !isAcceptedMatch
 
   const activeMentorshipMatch = myProfile.mentorshipMatches.find(
@@ -164,17 +154,14 @@ function Profile() {
             </Element>
           )}
 
-          {contactInfoAvailable && (
+          {!shouldHidePrivateContactInfo && (
             <Element className="block-separator">
               <Columns>
-                {!shouldHidePrivateContactInfo &&
-                  (profile.firstName || profile.age) && (
-                    <Columns.Column>
-                      <Element className="block-separator">
-                        <ReadContactDetails.Some profile={profile} />
-                      </Element>
-                    </Columns.Column>
-                  )}
+                <Columns.Column>
+                  <Element className="block-separator">
+                    <ReadContactDetails.Some profile={profile} />
+                  </Element>
+                </Columns.Column>
                 {(profile.linkedInProfileUrl ||
                   profile.githubProfileUrl ||
                   profile.slackUsername) && (
