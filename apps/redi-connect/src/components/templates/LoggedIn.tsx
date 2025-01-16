@@ -26,6 +26,7 @@ import { Navbar, SideMenu } from '../organisms'
 import Footer from '../organisms/Footer'
 
 interface Props {
+  hideNavigation?: boolean
   children?: ReactNode
 }
 
