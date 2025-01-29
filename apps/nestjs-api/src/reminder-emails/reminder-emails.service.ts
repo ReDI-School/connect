@@ -47,7 +47,7 @@ export class ReminderEmailsService {
 
   async getDraftingConProfiles({ userType }: { userType: UserType }) {
     const createdDate = new Date()
-    createdDate.setDate(createdDate.getDate() - 12)
+    createdDate.setDate(createdDate.getDate() - 14)
 
     return this.conProfilesService.findAll({
       'RecordType.DeveloperName': userType,
