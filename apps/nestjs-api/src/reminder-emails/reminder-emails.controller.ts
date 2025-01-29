@@ -40,11 +40,11 @@ export class ReminderEmailsController {
 
     if (menteesWithDrafingProfile.length > 0) {
       // send reminder emails
-      menteesWithDrafingProfile.forEach(async (mentor) => {
+      menteesWithDrafingProfile.forEach(async (mentee) => {
         await this.reminderEmailsService.sendCompleteProfileReminder({
           userType: UserType.MENTEE,
-          email: mentor.props.email,
-          firstName: mentor.props.firstName,
+          email: mentee.props.email,
+          firstName: mentee.props.firstName,
         })
       })
     }
