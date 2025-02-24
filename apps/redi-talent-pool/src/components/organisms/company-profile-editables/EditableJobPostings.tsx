@@ -14,9 +14,10 @@ import {
   Icon,
   LightModal,
   Modal,
-  TextEditor,
   showNotification,
+  TextEditor,
 } from '@talent-connect/shared-atomic-design-components'
+import { TALENT_POOL_URL } from '@talent-connect/shared-config'
 import { TpJobListing } from '@talent-connect/shared-types'
 import {
   desiredPositions,
@@ -24,10 +25,6 @@ import {
   germanFederalStates,
   topSkills,
 } from '@talent-connect/talent-pool/config'
-
-import { CardContextMenu } from '../../../components/molecules/CardContextMenu'
-
-import { TALENT_POOL_URL } from '@talent-connect/shared-config'
 import { objectEntries } from '@talent-connect/typescript-utilities'
 import { formatDistance } from 'date-fns'
 import { useFormik } from 'formik'
@@ -36,6 +33,7 @@ import { useCallback, useState } from 'react'
 import { Columns, Element } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import * as Yup from 'yup'
+import { CardContextMenu } from '../../../components/molecules/CardContextMenu'
 import { EmptySectionPlaceholder } from '../../molecules/EmptySectionPlaceholder'
 import { JobListingCard } from '../JobListingCard'
 import { useLoadModalFormJobListingDataQuery } from './EditableJobPostings.generated'
@@ -142,10 +140,13 @@ const validationSchema = Yup.object().shape({
   languageRequirements: Yup.string().required(
     'Please specify the language requirement(s)'
   ),
-  salaryRange: Yup.string().label('Salary Range').max(MAX_CHARS_COUNT),
+  salaryRange: Yup.string()
+    .nullable()
+    .label('Salary Range')
+    .max(MAX_CHARS_COUNT),
   contactFirstName: Yup.string().required('First name is required'),
   contactLastName: Yup.string().required('Last name is required'),
-  contactPhoneNumber: Yup.string(),
+  contactPhoneNumber: Yup.string().nullable(),
   contactEmailAddress: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
@@ -356,6 +357,8 @@ function ModalForm({
   })
 
   if (!formik.values) return null
+
+  console.log(formik)
 
   return (
     <Modal
