@@ -6,12 +6,12 @@ import {
   MentorshipMatchStatus,
   UserType,
 } from '@talent-connect/common-types'
-import * as AWS from 'aws-sdk'
 import { format as formatDate } from 'date-fns'
 import * as jsforce from 'jsforce'
 import { filter } from 'lodash'
 import difference from 'lodash/difference'
 import transform from 'lodash/transform'
+import nodemailer from 'nodemailer'
 import { ConMentoringSessionsService } from '../con-mentoring-sessions/con-mentoring-sessions.service'
 import { ConMentorshipMatchesService } from '../con-mentorship-matches/con-mentorship-matches.service'
 import { ConProfilesService } from '../con-profiles/con-profiles.service'
@@ -25,7 +25,7 @@ const SENDER_EMAIL = 'career@redi-school.org'
 
 @Injectable()
 export class ReminderEmailsService {
-  private ses: AWS.SES
+  private transporter: any
 
   constructor(
     private readonly emailTemplatesService: SfApiEmailTemplatesService,
@@ -34,10 +34,14 @@ export class ReminderEmailsService {
     private readonly conMentoringSessionsService: ConMentoringSessionsService,
     private readonly config: ConfigService
   ) {
-    this.ses = new AWS.SES({
-      accessKeyId: this.config.get('NX_EMAILER_AWS_ACCESS_KEY'),
-      secretAccessKey: this.config.get('NX_EMAILER_AWS_SECRET_KEY'),
-      region: this.config.get('NX_EMAILER_AWS_REGION'),
+    this.transporter = nodemailer.createTransport({
+      host: 'smtp.googlemail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'career@redi-school.org',
+        pass: process.env.NX_GWORKSPACE_EMAIL_PASSWORD,
+      },
     })
   }
 
@@ -423,25 +427,21 @@ export class ReminderEmailsService {
     )
 
     const params = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [email]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: sanitizedHtml },
-        },
-        Subject: { Data: template.Subject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? email
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: template.Subject,
+      html: sanitizedHtml,
     }
 
-    this.ses.sendEmail(params, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(params)
+      console.log('Email sent successfully')
+    } catch (err) {
+      console.error('Error sending email:', err)
+    }
 
     return { message: 'Email sent' }
   }
@@ -476,25 +476,21 @@ export class ReminderEmailsService {
     ).replace(/{{{Recipient\.FirstName}}}/g, `${firstName}`)
 
     const params = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [email]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: sanitizedHtml },
-        },
-        Subject: { Data: sanitizedSubject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? email
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: sanitizedSubject,
+      html: sanitizedHtml,
     }
 
-    this.ses.sendEmail(params, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(params)
+      console.log('Email sent successfully')
+    } catch (err) {
+      console.error('Error sending email:', err)
+    }
 
     return { message: 'Email sent' }
   }
@@ -528,25 +524,21 @@ export class ReminderEmailsService {
       .replace(/\${mentorFirstName}/g, menteeOrMentorFirstName)
 
     const params = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [email]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: sanitizedHtml },
-        },
-        Subject: { Data: template.Subject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? email
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: template.Subject,
+      html: sanitizedHtml,
     }
 
-    this.ses.sendEmail(params, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(params)
+      console.log('Email sent successfully')
+    } catch (err) {
+      console.error('Error sending email:', err)
+    }
 
     return { message: 'Email sent' }
   }
@@ -571,25 +563,21 @@ export class ReminderEmailsService {
     )
 
     const params = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [email]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: sanitizedHtml },
-        },
-        Subject: { Data: template.Subject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? email
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: template.Subject,
+      html: sanitizedHtml,
     }
 
-    this.ses.sendEmail(params, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(params)
+      console.log('Email sent successfully')
+    } catch (err) {
+      console.error('Error sending email:', err)
+    }
 
     return { message: 'Email sent' }
   }
@@ -658,46 +646,38 @@ export class ReminderEmailsService {
       )
 
     const menteeParams = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [menteeEmail]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: menteeSanitizedHtml },
-        },
-        Subject: { Data: menteeSanitizedSubject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? menteeEmail
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: menteeSanitizedSubject,
+      html: menteeSanitizedHtml,
     }
 
     const mentorParams = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [mentorEmail]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: mentorSanitizedHtml },
-        },
-        Subject: { Data: mentorSanitizedSubject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? mentorEmail
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: mentorSanitizedSubject,
+      html: mentorSanitizedHtml,
     }
 
-    this.ses.sendEmail(menteeParams, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(menteeParams)
+      console.log('Mentee email sent successfully')
+    } catch (err) {
+      console.error('Error sending mentee email:', err)
+    }
 
-    this.ses.sendEmail(mentorParams, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(mentorParams)
+      console.log('Mentor email sent successfully')
+    } catch (err) {
+      console.error('Error sending mentor email:', err)
+    }
 
     return { message: 'Emails sent' }
   }
@@ -730,25 +710,21 @@ export class ReminderEmailsService {
       .replace(/\${menteeFirstName}/g, `${match.menteeFirstName}`)
 
     const params = {
-      Destination: {
-        ToAddresses: isProductionOrDemonstration()
-          ? [match.mentorEmail]
-          : [this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT')],
-        BccAddresses: [SENDER_EMAIL],
-      },
-      Message: {
-        Body: {
-          Html: { Data: sanitizedHtml },
-        },
-        Subject: { Data: sanitizedSubject },
-      },
-      Source: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      from: `${SENDER_NAME} <${SENDER_EMAIL}>`,
+      to: isProductionOrDemonstration()
+        ? match.mentorEmail
+        : this.config.get('NX_DEV_MODE_EMAIL_RECIPIENT'),
+      bcc: SENDER_EMAIL,
+      subject: sanitizedSubject,
+      html: sanitizedHtml,
     }
 
-    this.ses.sendEmail(params, (err, data) => {
-      if (err) console.log(err, err.stack)
-      else console.log(data)
-    })
+    try {
+      await this.transporter.sendMail(params)
+      console.log('Email sent successfully')
+    } catch (err) {
+      console.error('Error sending email:', err)
+    }
 
     return { message: 'Email sent' }
   }

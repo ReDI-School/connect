@@ -1,12 +1,12 @@
 import {
   useMyTpDataQuery,
   usePatchTpCompanyProfileMutation,
-  usePatchUserContactMutation,
+  usePatchUserContactMutation
 } from '@talent-connect/data-access'
 import {
   Button,
   Caption,
-  FormInput,
+  FormInput
 } from '@talent-connect/shared-atomic-design-components'
 import { toPascalCaseAndTrim } from '@talent-connect/shared-utils'
 import { useFormik } from 'formik'
@@ -19,7 +19,7 @@ import { Editable } from '../../molecules/Editable'
 import { EmptySectionPlaceholder } from '../../molecules/EmptySectionPlaceholder'
 import {
   EditableContactCompanyProfilePropFragment,
-  EditableContactUserContactPropFragment,
+  EditableContactUserContactPropFragment
 } from './EditableContact.generated'
 
 interface Props {
@@ -137,7 +137,7 @@ const validationSchema = Yup.object({
     .transform(toPascalCaseAndTrim)
     .required('Your last name is required')
     .max(255),
-  telephoneNumber: Yup.string().max(255).label('Phone Number'),
+  telephoneNumber: Yup.string().nullable().max(255).label('Phone Number'),
 })
 
 type FormValues = EditableContactCompanyProfilePropFragment &

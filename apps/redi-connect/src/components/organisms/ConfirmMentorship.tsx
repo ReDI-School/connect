@@ -5,7 +5,7 @@ import {
 } from '@talent-connect/shared-atomic-design-components'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { Content } from 'react-bulma-components'
+import { Content, Notification } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -17,6 +17,8 @@ import {
 interface ConfirmMentorshipProps {
   match: ConfirmMentorshipMatchPropFragment
   menteeName?: string
+  hasReachedDesiredMenteeLimit?: boolean
+  menteeCountCapacity?: number
 }
 
 interface ConfirmMentorshipFormValues {
@@ -29,6 +31,7 @@ const initialValues = {
 
 const MIN_CHARS_COUNT = 250
 const MAX_CHARS_COUNT = 600
+const MAX_MENTEE_LIMIT = 2
 
 const validationSchema = Yup.object({
   mentorReplyMessageOnAccept: Yup.string()
@@ -37,7 +40,11 @@ const validationSchema = Yup.object({
     .max(MAX_CHARS_COUNT),
 })
 
-const ConfirmMentorship = ({ match }: ConfirmMentorshipProps) => {
+const ConfirmMentorship = ({
+  match,
+  hasReachedDesiredMenteeLimit,
+  menteeCountCapacity,
+}: ConfirmMentorshipProps) => {
   const queryClient = useQueryClient()
   const acceptMentorshipMutation = useAcceptMentorshipMutation()
   const [isModalActive, setModalActive] = useState(false)
@@ -73,7 +80,31 @@ const ConfirmMentorship = ({ match }: ConfirmMentorshipProps) => {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)}>Accept</Button>
+      {hasReachedDesiredMenteeLimit ? (
+        <>
+          {menteeCountCapacity === MAX_MENTEE_LIMIT ? (
+            <Notification color="info" className="is-light">
+              You've reached our recommended maximum number of mentees. If you
+              wish to mentor more than 2 mentees at the same time, please reach
+              out to us at{' '}
+              <a href="mailto:career@redi-school.org">career@redi-school.org</a>
+              . Otherwise, please decline the application.
+            </Notification>
+          ) : (
+            <Notification color="info" className="is-light">
+              You've reached your desired number of mentees. If you wish to
+              accept another mentee, please go to the{' '}
+              <a onClick={() => history.push('/app/me')}>My Profile</a> page and
+              increase the mentee count value. Otherwise, please decline the
+              application.
+            </Notification>
+          )}
+          <Button disabled={hasReachedDesiredMenteeLimit}>Accept</Button>
+        </>
+      ) : (
+        <Button onClick={() => setModalActive(true)}>Accept</Button>
+      )}
+
       <Modal
         show={isModalActive}
         stateFn={setModalActive}

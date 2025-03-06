@@ -32,7 +32,7 @@
             >
             or
             <a
-              href="https://calendar.app.google/zQJr8PJsNF2arm236"
+              href="https://calendar.app.google/u7EEPxtDVqif32Gz7"
               target="_blank"
               rel="noreferrer"
               class="text-link"
@@ -73,7 +73,7 @@
           <mj-text mj-class="text">ReDI Malmö Team</mj-text>
         </mj-column>
       </mj-section>
-       <mj-include path="./footer.malmo.team.mjml" />
+      <mj-include path="./footer.malmo.team.mjml" />
       <mj-section />
     </mj-wrapper>
   </mj-body>

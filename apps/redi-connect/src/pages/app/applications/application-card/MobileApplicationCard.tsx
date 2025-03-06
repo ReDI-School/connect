@@ -29,6 +29,11 @@ function MobileApplicationCard({ application }: Props) {
   const loopbackUserId = getAccessTokenFromLocalStorage().userId
   const myProfileQuery = useLoadMyProfileQuery({ loopbackUserId })
 
+  const hasReachedDesiredMenteeLimit =
+    myProfileQuery.data.conProfile.doesNotHaveAvailableMentorshipSlot
+
+  const menteeCountCapacity = myProfileQuery.data.conProfile.menteeCountCapacity
+
   const currentUser = myProfileQuery.data.conProfile
 
   const {
@@ -139,7 +144,11 @@ function MobileApplicationCard({ application }: Props) {
         application.status === MentorshipMatchStatus.Applied ? (
           <div className="action-buttons">
             <div>
-              <ConfirmMentorship match={application} />
+              <ConfirmMentorship
+                match={application}
+                hasReachedDesiredMenteeLimit={hasReachedDesiredMenteeLimit}
+                menteeCountCapacity={menteeCountCapacity}
+              />
               <DeclineMentorshipButton match={application} />
             </div>
           </div>

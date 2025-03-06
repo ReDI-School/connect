@@ -1,31 +1,27 @@
 'use strict'
 
-const aws = require('aws-sdk')
 const Rx = require('rxjs')
 const mjml2html = require('mjml')
 const nodemailer = require('nodemailer')
 const fs = require('fs')
 const path = require('path')
 
-const config = {
-  accessKeyId: process.env.NX_EMAILER_AWS_ACCESS_KEY,
-  secretAccessKey: process.env.NX_EMAILER_AWS_SECRET_KEY,
-  region: process.env.NX_EMAILER_AWS_REGION,
-}
 const { buildFrontendUrl } = require('../build-frontend-url')
 const { buildBackendUrl } = require('../build-backend-url')
-const { ConsoleLogger } = require('@nestjs/common')
-
-const ses = new aws.SES(config)
 
 const transporter = nodemailer.createTransport({
-  SES: ses,
+  host: 'smtp.googlemail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: 'career@redi-school.org',
+    pass: process.env.NX_GWORKSPACE_EMAIL_PASSWORD,
+  },
 })
 
 const isProductionOrDemonstration = () =>
   ['production', 'demonstration', 'staging'].includes(process.env.NODE_ENV)
 
-const sendEmail = Rx.bindNodeCallback(ses.sendEmail.bind(ses))
 const sendMjmlEmail = Rx.bindNodeCallback(
   transporter.sendMail.bind(transporter)
 )
@@ -40,35 +36,6 @@ const getSenderDetails = (rediLocation) => {
     ? 'career.sweden@redi-school.org'
     : 'career@redi-school.org'
   return { senderName, senderEmail }
-}
-
-const sendEmailFactory = (to, subject, body, rediLocation) => {
-  let toSanitized = isProductionOrDemonstration() ? to : ''
-  if (process.env.NX_DEV_MODE_EMAIL_RECIPIENT) {
-    toSanitized = process.env.NX_DEV_MODE_EMAIL_RECIPIENT
-  }
-
-  const { senderName, senderEmail } = getSenderDetails(rediLocation)
-
-  return sendEmail({
-    Source: `${senderName} <${senderEmail}>`,
-    Destination: {
-      ToAddresses: [toSanitized],
-      BccAddresses: [`${senderName} <${senderEmail}>`],
-    },
-    Message: {
-      Body: {
-        Text: {
-          Charset: 'UTF-8',
-          Data: body,
-        },
-      },
-      Subject: {
-        Charset: 'UTF-8',
-        Data: buildSubjectLine(subject, process.env.NODE_ENV),
-      },
-    },
-  })
 }
 
 const sendMjmlEmailFactory = ({ to, subject, html, rediLocation }) => {
@@ -172,7 +139,6 @@ const sendConVerificationEmail = ({
 
 module.exports = {
   sendResetPasswordEmail,
-  sendEmailFactory,
   sendMjmlEmailFactory,
   sendConVerificationEmail,
 }
