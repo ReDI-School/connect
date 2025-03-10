@@ -48,7 +48,22 @@ function Profile() {
   })
   const history = useHistory()
 
-  if (!profileQuery.isSuccess || !myProfileQuery.isSuccess) return null
+  if (profileQuery.isLoading || myProfileQuery.isLoading) return null
+
+  const conProfileNotFound =
+    profileQuery.error &&
+    (profileQuery.error as any)?.response?.errors?.some(
+      (err) => err?.extensions?.response?.statusCode === 404
+    )
+
+  const isInvalidProfile =
+    profileQuery?.data?.conProfile?.profileStatus === 'REJECTED' ||
+    profileQuery?.data?.conProfile?.profileStatus === 'DEACTIVATED'
+
+  if (conProfileNotFound || isInvalidProfile) {
+    history.replace('/app/404')
+    return null
+  }
 
   const myProfile = myProfileQuery.data.conProfile
   const profile = profileQuery.data.conProfile
