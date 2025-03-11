@@ -8,6 +8,7 @@ import {
   Button,
   Heading,
   Icon,
+  Loader,
 } from '@talent-connect/shared-atomic-design-components'
 import { REDI_LOCATION_NAMES } from '@talent-connect/shared-config'
 import { Columns, Content, Element, Notification } from 'react-bulma-components'
@@ -48,7 +49,8 @@ function Profile() {
   })
   const history = useHistory()
 
-  if (profileQuery.isLoading || myProfileQuery.isLoading) return null
+  if (profileQuery.isLoading || myProfileQuery.isLoading)
+    return <Loader loading />
 
   const conProfileNotFound =
     profileQuery.error &&
