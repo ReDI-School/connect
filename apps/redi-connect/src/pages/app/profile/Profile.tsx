@@ -8,6 +8,7 @@ import {
   Button,
   Heading,
   Icon,
+  Loader,
 } from '@talent-connect/shared-atomic-design-components'
 import { REDI_LOCATION_NAMES } from '@talent-connect/shared-config'
 import { Columns, Content, Element, Notification } from 'react-bulma-components'
@@ -48,7 +49,23 @@ function Profile() {
   })
   const history = useHistory()
 
-  if (!profileQuery.isSuccess || !myProfileQuery.isSuccess) return null
+  if (profileQuery.isLoading || myProfileQuery.isLoading)
+    return <Loader loading />
+
+  const conProfileNotFound =
+    profileQuery.error &&
+    (profileQuery.error as any)?.response?.errors?.some(
+      (err) => err?.extensions?.response?.statusCode === 404
+    )
+
+  const isInvalidProfile =
+    profileQuery?.data?.conProfile?.profileStatus === 'REJECTED' ||
+    profileQuery?.data?.conProfile?.profileStatus === 'DEACTIVATED'
+
+  if (conProfileNotFound || isInvalidProfile) {
+    history.replace('/app/404')
+    return null
+  }
 
   const myProfile = myProfileQuery.data.conProfile
   const profile = profileQuery.data.conProfile
@@ -77,16 +94,6 @@ function Profile() {
 
   const userCanApplyForMentorship =
     !isAcceptedMatch && currentUserIsMentee && !hasOpenApplication
-
-  const contactInfoAvailable =
-    profile &&
-    (profile.firstName ||
-      profile.lastName ||
-      profile.email ||
-      profile.telephoneNumber ||
-      profile.linkedInProfileUrl ||
-      profile.githubProfileUrl ||
-      profile.slackUsername)
 
   const shouldHidePrivateContactInfo = currentUserIsMentee && !isAcceptedMatch
 
@@ -164,17 +171,14 @@ function Profile() {
             </Element>
           )}
 
-          {contactInfoAvailable && (
+          {!shouldHidePrivateContactInfo && (
             <Element className="block-separator">
               <Columns>
-                {!shouldHidePrivateContactInfo &&
-                  (profile.firstName || profile.age) && (
-                    <Columns.Column>
-                      <Element className="block-separator">
-                        <ReadContactDetails.Some profile={profile} />
-                      </Element>
-                    </Columns.Column>
-                  )}
+                <Columns.Column>
+                  <Element className="block-separator">
+                    <ReadContactDetails.Some profile={profile} />
+                  </Element>
+                </Columns.Column>
                 {(profile.linkedInProfileUrl ||
                   profile.githubProfileUrl ||
                   profile.slackUsername) && (

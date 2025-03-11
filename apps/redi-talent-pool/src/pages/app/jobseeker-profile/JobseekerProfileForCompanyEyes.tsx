@@ -1,6 +1,7 @@
 import { useTpJobseekerDirectoryEntriesFindOneVisibleQuery } from '@talent-connect/data-access'
+import { Loader } from '@talent-connect/shared-atomic-design-components'
 import { Columns } from 'react-bulma-components'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import ProfileDownloadButton from '../../../components/molecules/ProfileDownloadButton'
 import { EditableEducation } from '../../../components/organisms/jobseeker-profile-editables/EditableEducation'
 import { EditableImportantDetails } from '../../../components/organisms/jobseeker-profile-editables/EditableImportantDetails'
@@ -18,6 +19,24 @@ export function JobseekerProfileForCompanyEyes() {
     useTpJobseekerDirectoryEntriesFindOneVisibleQuery({
       input: { tpJobseekerProfileId },
     })
+  const history = useHistory()
+
+  if (jobseekerProfileQuery.isLoading) return <Loader loading />
+
+  const tpJobseekerProfileNotFound =
+    jobseekerProfileQuery.error &&
+    (jobseekerProfileQuery.error as any)?.response?.errors?.some(
+      (err) => err?.extensions?.response?.statusCode === 404
+    )
+
+  if (
+    tpJobseekerProfileNotFound ||
+    !jobseekerProfileQuery?.data?.tpJobseekerDirectoryEntryVisible
+  ) {
+    history.replace('/app/404')
+    return null
+  }
+
   const jobseekerProfile =
     jobseekerProfileQuery?.data?.tpJobseekerDirectoryEntryVisible
 

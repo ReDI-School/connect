@@ -37,6 +37,9 @@ const Me = lazy(
       /* webpackChunkName: "Me", webpackPreload: true  */ '../pages/app/me/Me'
     )
 )
+const FourOFour = lazy(
+  () => import(/* webpackChunkName: "404" */ '../pages/app/404/404')
+)
 
 const routes: RouteDefinition[] = [
   {
@@ -83,6 +86,11 @@ const routes: RouteDefinition[] = [
   {
     path: '/app/me',
     component: Me,
+    exact: true,
+  },
+  {
+    path: '/app/404',
+    component: FourOFour,
     exact: true,
   },
 ]
