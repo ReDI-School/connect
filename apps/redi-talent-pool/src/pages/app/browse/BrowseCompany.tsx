@@ -63,7 +63,7 @@ export function BrowseCompany() {
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    joins25WinterTalentSummit: withDefault(BooleanParam, undefined),
+    // joins25WinterTalentSummit: withDefault(BooleanParam, undefined),
   })
   const name = query.name
   const desiredLanguages = query.desiredLanguages as Language[]
@@ -78,7 +78,7 @@ export function BrowseCompany() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const joins25WinterTalentSummit = query.joins25WinterTalentSummit
+  // const joins25WinterTalentSummit = query.joins25WinterTalentSummit
 
   const jobseekerProfilesQuery =
     useTpJobseekerDirectoryEntriesFindAllVisibleQuery({
@@ -94,7 +94,7 @@ export function BrowseCompany() {
          * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
          * Duplicate if there are multiple Job Fairs coming
          */
-        joins25WinterTalentSummit,
+        // joins25WinterTalentSummit,
       },
     })
 
@@ -166,14 +166,14 @@ export function BrowseCompany() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next method when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const toggle25WinterTalentSummitFilter = () => {
-    setQuery((latestQuery) => ({
-      ...latestQuery,
-      joins25WinterTalentSummit:
-        joins25WinterTalentSummit === undefined ? true : undefined,
-    }))
-    resetPaginationPageNumber()
-  }
+  // const toggle25WinterTalentSummitFilter = () => {
+  //   setQuery((latestQuery) => ({
+  //     ...latestQuery,
+  //     joins25WinterTalentSummit:
+  //       joins25WinterTalentSummit === undefined ? true : undefined,
+  //   }))
+  //   resetPaginationPageNumber()
+  // }
 
   const setName = (value) => {
     setQuery((latestQuery) => ({ ...latestQuery, name: value || undefined }))
@@ -193,7 +193,7 @@ export function BrowseCompany() {
        * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
        * Duplicate if there are multiple Job Fairs coming
        */
-      joins25WinterTalentSummit: undefined,
+      // joins25WinterTalentSummit: undefined,
     }))
     resetPaginationPageNumber()
   }
@@ -203,13 +203,13 @@ export function BrowseCompany() {
     skills.length !== 0 ||
     desiredPositions.length !== 0 ||
     federalStates.length !== 0 ||
-    employmentTypes.length !== 0 ||
-    /**
-     * Job Fair Boolean Field(s)
-     * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
-     * Duplicate if there are multiple Job Fairs coming
-     */
-    joins25WinterTalentSummit
+    employmentTypes.length !== 0
+  /**
+   * Job Fair Boolean Field(s)
+   * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
+   * Duplicate if there are multiple Job Fairs coming
+   */
+  // || joins25WinterTalentSummit
 
   return (
     <LoggedIn>
@@ -314,7 +314,7 @@ export function BrowseCompany() {
          * Job Fair Boolean Field(s)
          * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next div when there's an upcoming Job Fair
          * Duplicate if there are multiple Job Fairs coming
-         */}
+         
         <div className="filters-inner">
           <Checkbox
             name="joins25WinterTalentSummit"
@@ -324,8 +324,9 @@ export function BrowseCompany() {
             Attending ReDI Talent Summit '25 in Berlin
           </Checkbox>
         </div>
+        */}
         {/* Next Div is to keep three filters sizing for two checkboxes. Remove if necessary */}
-        <div className="filters-inner"></div>
+        {/* <div className="filters-inner"></div> */}
       </div>
 
       <div className="active-filters">
@@ -384,14 +385,14 @@ export function BrowseCompany() {
              * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next FilterTag when there's an upcoming Job Fair
              * Duplicate if there are multiple Job Fairs coming
              */}
-            {joins25WinterTalentSummit && (
+            {/* {joins25WinterTalentSummit && (
               <FilterTag
                 key="redi-winter-talent-summit-2025-filter"
                 id="redi-winter-talent-summit-2025-filter"
                 label="Attending ReDI Talent Summit '25 in Berlin"
                 onClickHandler={toggle25WinterTalentSummitFilter}
               />
-            )}
+            )} */}
             <span className="active-filters__clear-all" onClick={clearFilters}>
               Delete all filters
               <Icon icon="cancel" size="small" space="left" />

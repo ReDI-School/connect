@@ -60,14 +60,14 @@ export function JobseekerProfileForJobseekerEyes() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next method when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const on25WinterTalentSummitParticipateChange = async () => {
-    await mutation.mutateAsync({
-      input: {
-        joins25WinterTalentSummit: !profile?.joins25WinterTalentSummit,
-      },
-    })
-    queryClient.invalidateQueries()
-  }
+  // const on25WinterTalentSummitParticipateChange = async () => {
+  //   await mutation.mutateAsync({
+  //     input: {
+  //       joins25WinterTalentSummit: !profile?.joins25WinterTalentSummit,
+  //     },
+  //   })
+  //   queryClient.invalidateQueries()
+  // }
 
   const isProfileApproved =
     profile?.state === JobseekerProfileStatus.ProfileApproved
@@ -106,7 +106,7 @@ export function JobseekerProfileForJobseekerEyes() {
            * Job Fair Boolean Field(s)
            * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next div when there's an upcoming Job Fair
            * Duplicate if there are multiple Job Fairs coming
-           */}
+          
           <div style={{ marginBottom: '1.5rem' }}>
             <Checkbox
               checked={profile?.joins25WinterTalentSummit}
@@ -116,6 +116,7 @@ export function JobseekerProfileForJobseekerEyes() {
               <b>18/02/2025</b>.
             </Checkbox>
           </div>
+           */}
           <EditableOverview profile={profile} />
           <EditableSummary profile={profile} />
           <EditableProfessionalExperience profile={profile} />

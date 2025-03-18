@@ -45,8 +45,8 @@ export class TpJobseekerProfileMapper
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    props.joins25WinterTalentSummit =
-      raw.props.ReDI_Joins_25_Winter_Talent_Summit__c
+    // props.joins25WinterTalentSummit =
+    //   raw.props.ReDI_Joins_25_Winter_Talent_Summit__c
 
     props.isProfileVisibleToCompanies = raw.props.Is_Visible_to_Companies__c
     props.federalState = raw.props.Federal_State__c as FederalState
@@ -91,8 +91,8 @@ export class TpJobseekerProfileMapper
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    props.ReDI_Joins_25_Winter_Talent_Summit__c =
-      source.props.joins25WinterTalentSummit
+    // props.ReDI_Joins_25_Winter_Talent_Summit__c =
+    //   source.props.joins25WinterTalentSummit
     props.Is_Visible_to_Companies__c = source.props.isProfileVisibleToCompanies
     props.Subscribed_to_TP_Marketing_Emails__c =
       source.props.isSubscribedToTPMarketingEmails

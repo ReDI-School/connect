@@ -35,8 +35,8 @@ export class TpCompanyProfileMapper
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    props.joins25WinterTalentSummit =
-      raw.props.ReDI_Joins_25_Winter_Talent_Summit__c
+    // props.joins25WinterTalentSummit =
+    //   raw.props.ReDI_Joins_25_Winter_Talent_Summit__c
 
     props.createdAt = raw.props.CreatedDate
     props.updatedAt = raw.props.LastModifiedDate
@@ -69,8 +69,8 @@ export class TpCompanyProfileMapper
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    props.ReDI_Joins_25_Winter_Talent_Summit__c =
-      srcProps.joins25WinterTalentSummit
+    // props.ReDI_Joins_25_Winter_Talent_Summit__c =
+    //   srcProps.joins25WinterTalentSummit
 
     props.CreatedDate = srcProps.createdAt
     props.LastModifiedDate = srcProps.updatedAt

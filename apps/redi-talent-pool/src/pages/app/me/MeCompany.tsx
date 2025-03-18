@@ -59,14 +59,14 @@ export function MeCompany() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next method when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const on25WinterTalentSummitParticipateChange = async () => {
-    await mutation.mutateAsync({
-      input: {
-        joins25WinterTalentSummit: !companyProfile.joins25WinterTalentSummit,
-      },
-    })
-    queryClient.invalidateQueries()
-  }
+  // const on25WinterTalentSummitParticipateChange = async () => {
+  //   await mutation.mutateAsync({
+  //     input: {
+  //       joins25WinterTalentSummit: !companyProfile.joins25WinterTalentSummit,
+  //     },
+  //   })
+  //   queryClient.invalidateQueries()
+  // }
 
   const isProfileApproved =
     companyProfile.state === CompanyTalentPoolState.ProfileApproved
@@ -123,7 +123,7 @@ export function MeCompany() {
            * Job Fair Boolean Field(s)
            * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next div when there's an upcoming Job Fair
            * Duplicate if there are multiple Job Fairs coming
-           */}
+          
           <div style={{ marginBottom: '1.5rem' }}>
             <Checkbox
               checked={companyProfile.joins25WinterTalentSummit}
@@ -133,6 +133,7 @@ export function MeCompany() {
               on <b>18/02/2025</b>.
             </Checkbox>
           </div>
+           */}
           {companyProfile.isCareerPartner ? (
             <CareerPartnerBanner
               partnerSince={new Date(2024, 0, 1)} // Passing a date in 2024. The Day and Month are ignored

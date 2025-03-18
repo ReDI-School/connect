@@ -69,7 +69,7 @@ export function BrowseJobseeker() {
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    joins25WinterTalentSummit: withDefault(BooleanParam, undefined),
+    // joins25WinterTalentSummit: withDefault(BooleanParam, undefined),
   })
   const relatedPositions = query.relatedPositions as TpDesiredPosition[]
   const idealTechnicalSkills = query.idealTechnicalSkills as TpTechnicalSkill[]
@@ -83,7 +83,7 @@ export function BrowseJobseeker() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const joins25WinterTalentSummit = query.joins25WinterTalentSummit
+  // const joins25WinterTalentSummit = query.joins25WinterTalentSummit
 
   const jobListingsQuery = useTpJobListingFindAllVisibleQuery({
     input: {
@@ -98,7 +98,7 @@ export function BrowseJobseeker() {
        * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
        * Duplicate if there are multiple Job Fairs coming
        */
-      joins25WinterTalentSummit,
+      // joins25WinterTalentSummit,
     },
   })
 
@@ -178,12 +178,12 @@ export function BrowseJobseeker() {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next method when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  const toggle25WinterTalentSummitFilter = () =>
-    setQuery((latestQuery) => ({
-      ...latestQuery,
-      joins25WinterTalentSummit:
-        joins25WinterTalentSummit === undefined ? true : undefined,
-    }))
+  // const toggle25WinterTalentSummitFilter = () =>
+  //   setQuery((latestQuery) => ({
+  //     ...latestQuery,
+  //     joins25WinterTalentSummit:
+  //       joins25WinterTalentSummit === undefined ? true : undefined,
+  //   }))
 
   const clearFilters = () => {
     setQuery((latestQuery) => ({
@@ -199,7 +199,7 @@ export function BrowseJobseeker() {
        * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
        * Duplicate if there are multiple Job Fairs coming
        */
-      joins25WinterTalentSummit: undefined,
+      // joins25WinterTalentSummit: undefined,
     }))
   }
 
@@ -209,13 +209,13 @@ export function BrowseJobseeker() {
     employmentType.length !== 0 ||
     federalStates.length !== 0 ||
     isRemotePossible ||
-    datePosted ||
-    /**
-     * Job Fair Boolean Field(s)
-     * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
-     * Duplicate if there are multiple Job Fairs coming
-     */
-    joins25WinterTalentSummit
+    datePosted
+  /**
+   * Job Fair Boolean Field(s)
+   * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
+   * Duplicate if there are multiple Job Fairs coming
+   */
+  // || joins25WinterTalentSummit
 
   // Redirect to homepage if user is not supposed to be browsing yet
   if (
@@ -354,7 +354,7 @@ export function BrowseJobseeker() {
          * Job Fair Boolean Field(s)
          * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next div when there's an upcoming Job Fair
          * Duplicate if there are multiple Job Fairs coming
-         */}
+         
         <div className="filters-inner">
           <Checkbox
             name="joins25WinterTalentSummit"
@@ -364,8 +364,9 @@ export function BrowseJobseeker() {
             ReDI Talent Summit '25 in Berlin
           </Checkbox>
         </div>
+        */}
         {/* Next Div is to keep three filters sizing for two checkboxes. Remove if necessary */}
-        {/* <div className="filters-inner"></div> */}
+        <div className="filters-inner"></div>
       </div>
 
       <div className="active-filters">
@@ -439,14 +440,14 @@ export function BrowseJobseeker() {
              * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next FilterTag when there's an upcoming Job Fair
              * Duplicate if there are multiple Job Fairs coming
              */}
-            {joins25WinterTalentSummit && (
+            {/* {joins25WinterTalentSummit && (
               <FilterTag
                 key="redi-winter-talent-summit-2025-filter"
                 id="redi-winter-talent-summit-2025-filter"
                 label="ReDI Talent Summit '25 in Berlin"
                 onClickHandler={toggle25WinterTalentSummitFilter}
               />
-            )}
+            )} */}
             <span className="active-filters__clear-all" onClick={clearFilters}>
               Delete all filters
               <Icon icon="cancel" size="small" space="left" />
