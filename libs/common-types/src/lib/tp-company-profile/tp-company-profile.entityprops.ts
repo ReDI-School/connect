@@ -25,7 +25,7 @@ export class TpCompanyProfileEntityProps implements EntityProps {
    * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
    * Duplicate if there are multiple Job Fairs coming
    */
-  joins25WinterTalentSummit?: boolean
+  // joins25WinterTalentSummit?: boolean
 
   createdAt: Date
   updatedAt: Date

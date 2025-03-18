@@ -17,7 +17,7 @@ export class TpCompanyProfilePatchInput extends PartialType(
      * Uncomment & Rename (joins{Location}{Year}{Season}JobFair) the next field when there's an upcoming Job Fair
      * Duplicate if there are multiple Job Fairs coming
      */
-    'joins25WinterTalentSummit',
+    //'joins25WinterTalentSummit',
     'isProfileVisibleToJobseekers',
     'linkedInUrl',
     'location',
