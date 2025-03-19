@@ -13,56 +13,35 @@ const connectionString =
   'endpoint=https://red-platform-email-sending.germany.communication.azure.com/;accesskey=A49CnzJqxCFl6YZNidtQpj1wKNutAY66nhKaAU8S8lENpE13Y7FZJQQJ99BAACULyCpc62JTAAAAAZCS8U4P'
 const emailClient = new EmailClient(connectionString)
 
-// Helper function to extract email address from formatted string like "Name <email@example.com>"
-const extractEmailAddress = (formattedEmail) => {
-  const matches = formattedEmail.match(/<(.+)>/)
-  return matches ? matches[1] : formattedEmail
-}
-
-// Helper function to convert email recipients to Azure format
 const formatRecipients = (emailAddresses) => {
   if (!emailAddresses) return []
-  return Array.isArray(emailAddresses)
-    ? emailAddresses.map((email) => ({ address: extractEmailAddress(email) }))
-    : [{ address: extractEmailAddress(emailAddresses) }]
+  if (typeof emailAddresses === 'string') return [{ address: emailAddresses }]
+  return emailAddresses.map((email) => ({ address: email }))
 }
 
 const isProductionOrDemonstration = () =>
   ['production', 'demonstration', 'staging'].includes(process.env.NODE_ENV)
 
-async function _sendMjmlEmail(emailParams) {
-  console.log('emailParams', emailParams)
-  const emailMessage = {
-    senderAddress: extractEmailAddress(emailParams.from),
-    content: {
-      subject: emailParams.subject,
-      html: emailParams.html,
-    },
-    recipients: {
-      to: formatRecipients(emailParams.to),
-      bcc: formatRecipients(emailParams.bcc),
-    },
-  }
-
-  try {
-    const poller = await emailClient.beginSend(emailMessage)
-    const result = await poller.pollUntilDone()
-    return result
-  } catch (error) {
-    return [error]
-  }
-}
-
 export const sendMjmlEmail = (emailParams) =>
-  Rx.from(_sendMjmlEmail(emailParams))
+  Rx.from(
+    (async function iifeSendEmail() {
+      const emailMessage = {
+        senderAddress: 'career@redi-school.org',
+        content: {
+          subject: emailParams.subject,
+          html: emailParams.html,
+        },
+        recipients: {
+          to: formatRecipients(emailParams.to),
+          bcc: formatRecipients(emailParams.bcc),
+        },
+      }
 
-console.log('sending test email')
-sendMjmlEmail({
-  to: 'eric@binarylights.com',
-  subject: 'Test',
-  html: 'Test',
-  rediLocation: 'MALMO',
-}).subscribe()
+      const poller = await emailClient.beginSend(emailMessage)
+      const result = await poller.pollUntilDone()
+      return result
+    })()
+  )
 
 // TODO: I'm a duplicate of getSenderDetails in apps/api/lib/email/email.js, keep me in sync
 const getSenderDetails = (rediLocation) => {
