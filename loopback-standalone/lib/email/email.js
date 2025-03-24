@@ -9,9 +9,9 @@ const { EmailClient } = require('@azure/communication-email')
 const { buildFrontendUrl } = require('../build-frontend-url')
 const { buildBackendUrl } = require('../build-backend-url')
 
-const connectionString =
-  process.env.AZURE_COMMUNICATION_CONNECTION_STRING ||
-  'endpoint=https://red-platform-email-sending.germany.communication.azure.com/;accesskey=A49CnzJqxCFl6YZNidtQpj1wKNutAY66nhKaAU8S8lENpE13Y7FZJQQJ99BAACULyCpc62JTAAAAAZCS8U4P'
+const connectionString = process.env.AZURE_COMMUNICATION_CONNECTION_STRING
+if (!connectionString)
+  throw new Error('AZURE_COMMUNICATION_CONNECTION_STRING env var not set')
 const emailClient = new EmailClient(connectionString)
 
 const formatRecipients = (emailAddresses) => {
