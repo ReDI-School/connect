@@ -50,7 +50,7 @@ const getSenderDetails = (rediLocation) => {
     ? 'ReDI Malmö Team'
     : 'ReDI Talent Success Team'
   const senderEmail = isMalmoLocation
-    ? 'career@redi-school.org' // TODO: set back to career-sweden when we send email via Azure
+    ? 'career-sweden@redi-school.org' // TODO: set back to career-sweden when we send email via Azure
     : 'career@redi-school.org'
   return { senderName, senderEmail }
 }
