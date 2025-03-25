@@ -24,16 +24,21 @@
           </mj-text>
 
           <mj-text mj-class="text paragraph"
-            >After sending your profile for review and having an onboarding call
-            with our Mentorship Program Manager, your profile will become
-            visible to mentees.</mj-text
+            >After submitting your profile for review, please
+            <a
+              href="https://calendar.app.google/u7EEPxtDVqif32Gz7"
+              class="text-link"
+              >book a quick onboarding session</a
+            >
+            with our Mentorship Program Manager. This is the last step before
+            your profile will become visible to mentees.</mj-text
           >
 
           <mj-text mj-class="text">All the best,</mj-text>
           <mj-text mj-class="text">ReDI Malmö Team</mj-text>
         </mj-column>
       </mj-section>
-       <mj-include path="./footer.malmo.team.mjml" />
+      <mj-include path="./footer.malmo.team.mjml" />
       <mj-section />
     </mj-wrapper>
   </mj-body>
