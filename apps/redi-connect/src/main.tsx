@@ -36,3 +36,5 @@ console.log(
   'This ReDI Connect build is configured for environment:',
   process.env.NODE_ENV
 )
+
+console.log('hello from christos and eric')
