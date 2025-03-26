@@ -1046,6 +1046,7 @@ export enum TpCompanyRepresentativeRelationshipStatus {
 export type TpCurrentUserData = {
   __typename?: 'TpCurrentUserData';
   companyRepresentativeRelationship?: Maybe<TpCompanyRepresentativeRelationship>;
+  dummyField: Scalars['String'];
   jobListings?: Maybe<Array<TpJobListing>>;
   representedCompany?: Maybe<TpCompanyProfile>;
   tpJobseekerDirectoryEntry?: Maybe<TpJobseekerDirectoryEntry>;
