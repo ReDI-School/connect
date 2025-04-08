@@ -32,8 +32,8 @@ export class ConProfilesSalesforceEventHandlerService {
     const isStatusSubmittedForReviewToApproved =
       payload.oldStatus === ConnectProfileStatus.SUBMITTED_FOR_REVIEW &&
       payload.newStatus === ConnectProfileStatus.APPROVED
-    const isStatusDraftingToRejected =
-      payload.oldStatus === ConnectProfileStatus.DRAFTING_PROFILE &&
+    const isStatusSubmittedForReviewToRejected =
+      payload.oldStatus === ConnectProfileStatus.SUBMITTED_FOR_REVIEW &&
       payload.newStatus === ConnectProfileStatus.REJECTED
 
     if (isStatusSubmittedForReviewToApproved) {
@@ -53,7 +53,7 @@ export class ConProfilesSalesforceEventHandlerService {
             firstName: conProfile.props.firstName,
             rediLocation: conProfile.props.rediLocation,
           })
-        if (isStatusDraftingToRejected)
+        if (isStatusSubmittedForReviewToRejected)
           this.emailService.sendPendingReviewDeclinedEmail({
             recipient: conProfile.props.email,
             firstName: conProfile.props.firstName,
@@ -69,7 +69,7 @@ export class ConProfilesSalesforceEventHandlerService {
             firstName: conProfile.props.firstName,
             rediLocation: conProfile.props.rediLocation,
           })
-        if (isStatusDraftingToRejected)
+        if (isStatusSubmittedForReviewToRejected)
           this.emailService.sendPendingReviewDeclinedEmail({
             recipient: conProfile.props.email,
             firstName: conProfile.props.firstName,
