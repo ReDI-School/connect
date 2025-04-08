@@ -13,16 +13,17 @@
             >Dear ${firstName},</mj-text
           >
           <mj-text mj-class="text paragraph"
-            >Unfortunately, your profile has not been approved. Most likely this
-            has been discussed with you in your conversation with one of our
-            ReDI Talent Success team members.
-          </mj-text>
+            >Unfortunately, your profile has not been approved. Most likely,
+            this has been discussed with you during your conversation with one
+            of our ReDI Talent Success team members.</mj-text
+          >
+
           <mj-text mj-class="text paragraph"
-            >If you feel like this has been done without your knowledge, please
-            reach out to us at
-            <a href="mailto:career@redi-school.org" class="text-link"
-              >career@redi-school.org</a
-            >, so we can get in touch with you.</mj-text
+            >If you need further clarification, please reach out to us at
+            <a href="mailto:career.sweden@redi-school.org" class="text-link"
+              >career.sweden@redi-school.org</a
+            >
+            so that we can get in touch with you.</mj-text
           >
           <mj-text mj-class="text">All the best,</mj-text>
           <mj-text mj-class="text">Your ReDI Talent Success Team</mj-text>
