@@ -15,14 +15,26 @@ const { CONTEXT } = require('@nestjs/graphql')
 
 module.exports = function (RedUser) {
   RedUser.observe('before save', function updateTimestamp(ctx, next) {
-    const containsFirstNameAndLastName = ctx.instance && ctx.instance.firstName && ctx.instance.lastName
-    if (!containsFirstNameAndLastName) return next ('missing firstname and/or lastname')
+    const instance = ctx.instance || ctx.data
 
-    const nameValidator = /^[\p{Letter}\s\-.,']+$/u
-    const firstNameValid = nameValidator.test(ctx.instance.firstName)
-    const lastNameValid = nameValidator.test(ctx.instance.lastName)
-    if (!firstNameValid) return next('firstName contains illegal characters')
-    if (!lastNameValid) return next('lastName contains illegal characters')
+    const shouldValidateNames =
+      ctx.isNewInstance || instance.firstName || instance.lastName
+
+    // Only validate if names are being added or changed (on create or update)
+    if (shouldValidateNames) {
+      const hasFirstName = instance.firstName
+      const hasLastName = instance.lastName
+
+      if (!hasFirstName || !hasLastName)
+        return next('missing firstname and/or lastname')
+
+      const nameValidator = /^[\p{Letter}\s\-.,']+$/u
+      const firstNameValid = nameValidator.test(instance.firstName)
+      const lastNameValid = nameValidator.test(instance.lastName)
+
+      if (!firstNameValid) return next('firstName contains illegal characters')
+      if (!lastNameValid) return next('lastName contains illegal characters')
+    }
 
     if (ctx.instance) {
       if (ctx.isNewInstance) ctx.instance.createdAt = new Date()
