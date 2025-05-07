@@ -210,7 +210,7 @@ export default function SignUp() {
                 className="submit-spacer"
                 {...formik}
               >
-                My employer is in a mentorship partnership with ReDI School
+                I am participating in a mentorship event with my company
               </Checkbox.Form>
             )}
             {type === 'mentor' && isPartnershipMentor && (
