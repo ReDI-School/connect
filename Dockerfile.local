@@ -1,0 +1,27 @@
+# ---- Base Node ----
+FROM node:18 AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+WORKDIR /app
+
+# ---- Run Node----
+FROM base AS run
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install
+COPY . .
+
+CMD ["pnpm", "nx", "run", "nestjs-api:serve"]
+
+
+
+# FROM node:18-slim As builder
+
+# WORKDIR /app
+
+# COPY yarn.lock package.json ./
+# RUN yarn
+# COPY . .
+# # RUN yarn nx run nestjs-api:serve
+# EXPOSE 3333
+# CMD ["yarn", "nx", "run", "nestjs-api:serve"]

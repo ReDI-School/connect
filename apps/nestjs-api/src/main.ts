@@ -8,6 +8,8 @@ import { NestFactory } from '@nestjs/core'
 import { json, urlencoded } from 'express'
 import { AppModule } from './app/app.module'
 
+console.log(process.env)
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   const globalPrefix = 'api'
