@@ -31,10 +31,16 @@ const Profile = lazy(
       /* webpackChunkName: "Profile", webpackPreload: true  */ '../pages/app/profile/Profile'
     )
 )
-const Me = lazy(
+const RedirectToOwnProfile = lazy(
   () =>
     import(
-      /* webpackChunkName: "Me", webpackPreload: true  */ '../pages/app/me/Me'
+      /* webpackChunkName: "Me", webpackPreload: true  */ '../pages/app/profile/RedirectToOwnProfile'
+    )
+)
+const ProfilePage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "MeOrProfile", webpackPreload: true  */ '../pages/app/profile/ProfilePage'
     )
 )
 const FourOFour = lazy(
@@ -80,12 +86,12 @@ const routes: RouteDefinition[] = [
   },
   {
     path: '/app/profile/:profileId',
-    component: Profile,
+    component: ProfilePage,
     exact: true,
   },
   {
     path: '/app/me',
-    component: Me,
+    component: RedirectToOwnProfile,
     exact: true,
   },
   {
