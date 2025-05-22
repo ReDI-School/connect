@@ -25,10 +25,10 @@ const FindAMentor = lazy(
       /* webpackChunkName: "FindAMentor", webpackPreload: true  */ '../pages/app/find-a-mentor/FindAMentor'
     )
 )
-const Profile = lazy(
+const ProfileViewer = lazy(
   () =>
     import(
-      /* webpackChunkName: "Profile", webpackPreload: true  */ '../pages/app/profile/Profile'
+      /* webpackChunkName: "ProfileViewer", webpackPreload: true  */ '../pages/app/profile/profile-viewer/ProfileViewer'
     )
 )
 const RedirectToOwnProfile = lazy(
@@ -55,7 +55,7 @@ const routes: RouteDefinition[] = [
   },
   {
     path: '/app/find-a-mentor/profile/:profileId',
-    component: Profile,
+    component: ProfileViewer,
     exact: true,
   },
   {
@@ -66,7 +66,7 @@ const routes: RouteDefinition[] = [
   },
   {
     path: '/app/applications/profile/:profileId',
-    component: Profile,
+    component: ProfileViewer,
     exact: true,
   },
   {
@@ -81,7 +81,7 @@ const routes: RouteDefinition[] = [
   },
   {
     path: '/app/mentorships/profile/:profileId',
-    component: Profile,
+    component: ProfileViewer,
     exact: true,
   },
   {

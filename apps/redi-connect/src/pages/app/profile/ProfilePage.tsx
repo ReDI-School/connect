@@ -3,7 +3,7 @@ import { Loader } from '@talent-connect/shared-atomic-design-components'
 import { useParams } from 'react-router-dom'
 import { getAccessTokenFromLocalStorage } from '../../../services/auth/auth'
 import ProfileEditor from '../profile/profile-editor/ProfileEditor'
-import Profile from './Profile'
+import ProfileViewer from './profile-viewer/ProfileViewer'
 
 interface RouteParams {
   profileId: string
@@ -23,7 +23,7 @@ const ProfilePage = () => {
 
   if (profileIsOfCurrentUser) return <ProfileEditor />
 
-  return <Profile />
+  return <ProfileViewer />
 }
 
 export default ProfilePage
