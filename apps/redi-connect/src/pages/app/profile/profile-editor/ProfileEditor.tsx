@@ -18,13 +18,13 @@ import {
   EditableOccupation,
   EditablePersonalDetail,
   EditableSocialMedia,
-} from '../../../components/organisms'
+} from '../../../../components/organisms'
 
-import { LoggedIn } from '../../../components/templates'
+import { LoggedIn } from '../../../../components/templates'
 import {
   getAccessTokenFromLocalStorage,
   purgeAllSessionData,
-} from '../../../services/auth/auth'
+} from '../../../../services/auth/auth'
 
 import {
   ConnectProfileStatus,
@@ -34,13 +34,13 @@ import {
   usePatchMyProfileMutation,
 } from '@talent-connect/data-access'
 import { REDI_LOCATION_NAMES } from '@talent-connect/shared-config'
-import { useLoading } from '../../../hooks/WithLoading'
+import { useLoading } from '../../../../hooks/WithLoading'
 // CHECK OUT THE LOADER
 import { useHistory } from 'react-router-dom'
-import './Me.scss'
 import OnboardingSteps from './OnboardingSteps'
+import './ProfileEditor.scss'
 
-function Me() {
+function ProfileEditor() {
   const queryClient = useQueryClient()
   const submitProfileForReviewMutation = useConProfileSubmitForReviewMutation()
   const patchMyProfileMutation = usePatchMyProfileMutation()
@@ -300,7 +300,7 @@ function Me() {
   )
 }
 
-export default Me
+export default ProfileEditor
 
 // We controll the stepper by passing the current step index (zero-based) as the activeStep prop
 const defineCurrentStep = (

@@ -34,13 +34,13 @@ const Profile = lazy(
 const RedirectToOwnProfile = lazy(
   () =>
     import(
-      /* webpackChunkName: "Me", webpackPreload: true  */ '../pages/app/profile/RedirectToOwnProfile'
+      /* webpackChunkName: "ProfileEditor", webpackPreload: true  */ '../pages/app/profile/RedirectToOwnProfile'
     )
 )
 const ProfilePage = lazy(
   () =>
     import(
-      /* webpackChunkName: "MeOrProfile", webpackPreload: true  */ '../pages/app/profile/ProfilePage'
+      /* webpackChunkName: "ProfilePage", webpackPreload: true  */ '../pages/app/profile/ProfilePage'
     )
 )
 const FourOFour = lazy(
