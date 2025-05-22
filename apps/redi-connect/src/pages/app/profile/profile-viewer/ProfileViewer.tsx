@@ -22,26 +22,26 @@ import {
   ReadOccupation,
   ReadPersonalDetail,
   ReadSocialMedia,
-} from '../../../components/molecules'
+} from '../../../../components/molecules'
 import {
   ApplyForMentor,
   Avatar,
   ConfirmMentorship,
-} from '../../../components/organisms'
-import DeclineMentorshipButton from '../../../components/organisms/DeclineMentorshipButton'
-import { LoggedIn } from '../../../components/templates'
-import { getAccessTokenFromLocalStorage } from '../../../services/auth/auth'
+} from '../../../../components/organisms'
+import DeclineMentorshipButton from '../../../../components/organisms/DeclineMentorshipButton'
+import { LoggedIn } from '../../../../components/templates'
+import { getAccessTokenFromLocalStorage } from '../../../../services/auth/auth'
 import {
   ProfilePageQueryQuery,
   useProfilePageQueryQuery,
-} from './Profile.generated'
-import './Profile.scss'
+} from './ProfileViewer.generated'
+import './ProfileViewer.scss'
 
 interface RouteParams {
   profileId: string
 }
 
-function Profile() {
+function ProfileViewer() {
   const { profileId } = useParams<RouteParams>()
   const profileQuery = useProfilePageQueryQuery({ id: profileId })
   const myProfileQuery = useLoadMyProfileQuery({
@@ -363,4 +363,4 @@ function determineViewMode(
   return 'display'
 }
 
-export default Profile
+export default ProfileViewer
