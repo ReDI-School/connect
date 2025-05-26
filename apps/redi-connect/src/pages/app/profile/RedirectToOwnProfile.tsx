@@ -10,7 +10,6 @@ const RedirectToOwnProfile = () => {
   const currentUserProfileId = currentUserProfile.data?.conProfile?.id
 
   if (currentUserProfile.isLoading) return <Loader loading />
-  if (!currentUserProfile) return null
 
   return <Redirect to={`/app/profile/${currentUserProfileId}`} />
 }
