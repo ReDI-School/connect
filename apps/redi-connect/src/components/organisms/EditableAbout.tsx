@@ -86,6 +86,7 @@ function EditableAbout() {
         name="expectations"
         rows={4}
         placeholder={expectationsFieldPlaceholder(userType)}
+        maxLength={MAX_CHARS_COUNT}
         formik={formik}
       />
     </Editable>
@@ -95,10 +96,10 @@ function EditableAbout() {
 const expectationsFieldLabel = (userType: UserType): string => {
   switch (userType) {
     case 'MENTEE':
-      return 'What do you expect from a mentorship and which short- to medium-term goals would you like to achieve in about 5-6 mentoring sessions?'
+      return 'What do you expect from a mentorship and which short- to medium-term goals would you like to achieve in about 5-6 mentoring sessions? (max 600 characters)'
 
     case 'MENTOR':
-      return 'Feel free to share how you can best support your mentees and any expectations you may have towards them'
+      return 'Feel free to share how you can best support your mentees and any expectations you may have towards them (max 600 characters)'
 
     default:
       return null
