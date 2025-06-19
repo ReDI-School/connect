@@ -92,8 +92,13 @@ function ProfileViewer() {
   const hasOpenApplication =
     myMatchWithThisProfile?.status === MentorshipMatchStatus.Applied
 
+  const hasApprovedProfile = myProfile.profileStatus === 'APPROVED'
+
   const userCanApplyForMentorship =
-    !isAcceptedMatch && currentUserIsMentee && !hasOpenApplication
+    !isAcceptedMatch &&
+    currentUserIsMentee &&
+    !hasOpenApplication &&
+    hasApprovedProfile
 
   const shouldHidePrivateContactInfo = currentUserIsMentee && !isAcceptedMatch
 
