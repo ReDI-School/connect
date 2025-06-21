@@ -1,5 +1,9 @@
 {
+  "prettier.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.useEditorConfig": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
   "eslint.workingDirectories": [
     "./apps/redi-connect",
     "./lib/shared-atomic-design-components",
