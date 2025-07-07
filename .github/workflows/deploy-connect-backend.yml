@@ -5,8 +5,7 @@ on:
     branches:
       - master
       - salesforce-integration
-      - chore/reinstate-terraform-for-azure-migration
-      - chore/latest-terraform-greek-god-awesome-stuff-terrastos
+      - infra/eric-christos-greek-god-working-on-infra
 
 #    paths:
 #      - 'apps/nestjs-api/**'
@@ -49,6 +48,75 @@ jobs:
         with:
           app-name: api-staging-redos
           images: ${{ env.AZURE_IMAGE_NAME_WITH_LATEST_TAG }}
+          # app-settings: |
+          #   NX_DEV_MODE_EMAIL_RECIPIENT=eric@binarylights.com
+          #   NX_DAEMON=false
+          #   NX_AWS_REGION=eu-west-1
+          #   NX_EMAILER_AWS_REGION=eu-west-1
+          #   NX_SALESFORCE_API_LOGIN_URL=https://test.salesforce.com
+          #   NX_JWT_SECRET=${{ secrets.NX_JWT_SECRET }}
+          #   NX_AWS_ACCESS_KEY_ID=${{ secrets.NX_AWS_ACCESS_KEY_ID }}
+          #   NX_AWS_SECRET_ACCESS_KEY=${{ secrets.NX_AWS_SECRET_ACCESS_KEY }}
+          #   NX_EMAILER_AWS_ACCESS_KEY=${{ secrets.NX_EMAILER_AWS_ACCESS_KEY }}
+          #   NX_EMAILER_AWS_SECRET_KEY=${{ secrets.NX_EMAILER_AWS_SECRET_KEY }}
+          #   NX_SALESFORCE_API_USERNAME=${{ secrets.NX_SALESFORCE_API_USERNAME }}
+          #   NX_SALESFORCE_API_PASSWORD=${{ secrets.NX_SALESFORCE_API_PASSWORD }}
+          #   NX_SALESFORCE_API_SECURITY_TOKEN=${{ secrets.NX_SALESFORCE_API_SECURITY_TOKEN }}
+          #   NX_SALESFORCE_API_CLIENT_ID=${{ secrets.NX_SALESFORCE_API_CLIENT_ID }}
+          #   NX_SALESFORCE_API_CLIENT_SECRET=${{ secrets.NX_SALESFORCE_API_CLIENT_SECRET }}
+
+      - name: Configure env. vars to be passed to the Docker container running the backend
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: api-staging-redos
+          app-settings-json: |
+            [
+              { "name": "NX_DEV_MODE_EMAIL_RECIPIENT",
+                "value": "eric@binarylights.com"
+              },
+              { "name": "NX_DAEMON",
+                "value": "false"
+              },
+              { "name": "NX_AWS_REGION",
+                "value": "eu-west-1"
+              },
+              { "name": "NX_EMAILER_AWS_REGION",
+                "value": "eu-west-1"
+              },
+              { "name": "NX_SALESFORCE_API_LOGIN_URL",
+                "value": "https://test.salesforce.com"
+              },
+              { "name": "NX_JWT_SECRET",
+                "value": "${{ secrets.NX_JWT_SECRET }}"
+              },
+              { "name": "NX_AWS_ACCESS_KEY_ID",
+                "value": "${{ secrets.NX_AWS_ACCESS_KEY_ID }}"
+              },
+              { "name": "NX_AWS_SECRET_ACCESS_KEY",
+                "value": "${{ secrets.NX_AWS_SECRET_ACCESS_KEY }}"
+              },
+              { "name": "NX_EMAILER_AWS_ACCESS_KEY",
+                "value": "${{ secrets.NX_EMAILER_AWS_ACCESS_KEY }}"
+              },
+              { "name": "NX_EMAILER_AWS_SECRET_KEY",
+                "value": "${{ secrets.NX_EMAILER_AWS_SECRET_KEY }}"
+              },
+              { "name": "NX_SALESFORCE_API_USERNAME",
+                "value": "${{ secrets.NX_SALESFORCE_API_USERNAME }}"
+              },
+              { "name": "NX_SALESFORCE_API_PASSWORD",
+                "value": "${{ secrets.NX_SALESFORCE_API_PASSWORD }}"
+              },
+              { "name": "NX_SALESFORCE_API_SECURITY_TOKEN",
+                "value": "${{ secrets.NX_SALESFORCE_API_SECURITY_TOKEN }}"
+              },
+              { "name": "NX_SALESFORCE_API_CLIENT_ID",
+                "value": "${{ secrets.NX_SALESFORCE_API_CLIENT_ID }}"
+              },
+              { "name": "NX_SALESFORCE_API_CLIENT_SECRET",
+                "value": "${{ secrets.NX_SALESFORCE_API_CLIENT_SECRET }}"
+              }
+            ]
 
       - name: Azure logout
         run: |
