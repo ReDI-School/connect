@@ -718,6 +718,7 @@ enum TpCompanyRepresentativeRelationshipStatus {
 
 type TpCurrentUserData {
   companyRepresentativeRelationship: TpCompanyRepresentativeRelationship
+  dummyField: String!
   jobListings: [TpJobListing!]
   representedCompany: TpCompanyProfile
   tpJobseekerDirectoryEntry: TpJobseekerDirectoryEntry

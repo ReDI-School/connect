@@ -1,0 +1,6 @@
+# This is the configuration file required to configure the following Github App
+# we've installled on our talent-connect repository:
+# https://the-guild.dev/graphql/inspector/docs/products/github
+
+branch: master
+schema: schema.graphql

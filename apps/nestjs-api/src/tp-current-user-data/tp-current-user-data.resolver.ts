@@ -97,4 +97,9 @@ export class TpCurrentUserDataResolver {
   async userContact(@CurrentUser() currentUser: CurrentUserInfo) {
     return currentUser.userProps
   }
+
+  @ResolveField((of) => String)
+  async dummyField() {
+    return 'test'
+  }
 }
