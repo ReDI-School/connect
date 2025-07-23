@@ -15,8 +15,8 @@
             >Thank you for signing up on ReDI Connect!</mj-text
           >
           <mj-text mj-class="text paragraph"
-            >Please verify your email address by clicking on the button below.
-            After successfully verifying, we'll send you an email with the next
+            >Please verify your email address by clicking the button below. Once
+            your email is verified, we'll send you an email with the next
             steps!</mj-text
           >
           <mj-image
@@ -27,6 +27,14 @@
             width="353px"
             href="${verificationUrl}"
           />
+          <mj-text mj-class="text paragraph"
+            >If the button above doesn't work, you can also
+            <a href="${verificationUrl}" class="text-link">click this link</a>
+            or copy and paste the following URL into your browser:
+            <a href="${verificationUrl}" class="text-link"
+              >${verificationUrl}</a
+            >
+          </mj-text>
 
           <mj-text mj-class="text paragraph"
             >We are excited to get to know you soon!</mj-text
