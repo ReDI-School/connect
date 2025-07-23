@@ -19,21 +19,24 @@
             your email is verified, we'll send you an email with the next
             steps!</mj-text
           >
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/verify.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            width="353px"
+          <mj-button
             href="${verificationUrl}"
-          />
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
+          >
+            Verify Your Email Address
+          </mj-button>
           <mj-text mj-class="text paragraph"
             >If the button above doesn't work, you can also
             <a href="${verificationUrl}" class="text-link">click this link</a>
-            or copy and paste the following URL into your browser:
-            <a href="${verificationUrl}" class="text-link"
-              >${verificationUrl}</a
-            >
+            or copy and paste it into your browser.
           </mj-text>
 
           <mj-text mj-class="text paragraph"
