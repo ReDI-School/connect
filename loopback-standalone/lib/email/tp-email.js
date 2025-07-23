@@ -28,11 +28,11 @@ const sendTpResetPasswordEmail = ({ recipient, accessToken }) => {
   const resetPasswordUrl = `${buildTpFrontendUrl(
     process.env.NODE_ENV
   )}/front/reset-password/set-new-password/${accessToken}`
-  const rediEmailAdress = 'career@redi-school.org'
+  const rediEmailAddress = 'career@redi-school.org'
   const html = sendTpResetPasswordEmailParsed.html
     .replace(/\${resetPasswordUrl}/g, resetPasswordUrl)
-    .replace(/\${rediEmailAdress}/g, rediEmailAdress)
-    .replace(/\${emailAdress}/g, recipient)
+    .replace(/\${rediEmailAddress}/g, rediEmailAddress)
+    .replace(/\${emailAddress}/g, recipient)
   return sendMjmlEmailFactory({
     to: recipient,
     subject: 'Password Reset for ReDI Talent Pool',
