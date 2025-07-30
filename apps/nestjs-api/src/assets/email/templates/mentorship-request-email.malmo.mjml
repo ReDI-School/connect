@@ -24,14 +24,20 @@
             >Please log into ReDI Connect to review this application and visit
             the profile of the mentee at your earliest convenience:</mj-text
           >
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/review-application.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            width="250px"
+          <mj-button
             href="${applicationsPageUrl}"
-          />
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
+          >
+            Review Application
+          </mj-button>
           <mj-text mj-class="text"
             ><strong>After reviewing the application:</strong></mj-text
           >

@@ -14,25 +14,31 @@
           <mj-text mj-class="text" padding="0 0 20px 0"
             >Hi ${mentorName},</mj-text
           >
-          <mj-text mj-class="text paragraph" 
+          <mj-text mj-class="text paragraph"
             >Thank you for logging the session(s) you had with
             ${menteeFirstName}!</mj-text
           >
-          <mj-text mj-class="text paragraph" 
+          <mj-text mj-class="text paragraph"
             >This is super helpful because it's currently the only way for us to
             track the progress of your mentorship.
           </mj-text>
-          <mj-text mj-class="text paragraph" 
+          <mj-text mj-class="text paragraph"
             >Please keep logging your sessions!</mj-text
           >
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/log-next-session.png"
-            align="left"
-            padding="10px 0 30px"
-            target="_blank"
-            width="250px"
+          <mj-button
             href="${loginUrl}"
-          />
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
+          >
+            Log Next Session
+          </mj-button>
 
           <mj-text mj-class="text">All the best,</mj-text>
           <mj-text mj-class="text">ReDI Malmö Team</mj-text>
