@@ -40,27 +40,20 @@
             >
             with our Mentorship Program Manager.</mj-text
           >
-
-          <mj-text mj-class="text paragraph"
-            >To log in to your profile, you can click here:</mj-text
+          <mj-button
+            href="${loginPageUrl}"
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
           >
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/signin-web.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            width="158px"
-            css-class="button-desktop"
-            href="${loginPageUrl}"
-          />
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/signin-mobile.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            css-class="button-mobile"
-            href="${loginPageUrl}"
-          />
+            Log In to Your Profile
+          </mj-button>
           <mj-text mj-class="text paragraph"
             >We wish you a wonderful mentorship experience!</mj-text
           >

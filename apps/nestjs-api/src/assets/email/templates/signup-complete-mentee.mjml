@@ -46,6 +46,15 @@
             href="https://www.youtube.com/watch?v=M3nwS3QfdMM"
           />
           <mj-text mj-class="text paragraph"
+            >If the button above doesn't work,
+            <a
+              href="https://www.youtube.com/watch?v=M3nwS3QfdMM"
+              class="text-link"
+              >watch the video</a
+            >
+            using this link.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
             >After watching the video, please
             <a href="${loginPageUrl}" class="text-link"
               >log into your account</a

@@ -80,7 +80,7 @@
           },
           {
             "question": "If I have any questions, whom should I contact?",
-            "answer": "If you are from <b>ReDI School Germany</b>, then please use the following email addresses: </br> General: <a href='mailto:career@redi-school.org'>career@redi-school.org</a> </br> Mentorship Program Manager: <a href='mailto:hadeer@redi-school.org'>hadeer@redi-school.org</a></br></br>If you are from <b>ReDI School Malmö</b>, then please use the following email addresses:</br>General: <a href='mailto:malmo@redi-school.org'>malmo@redi-school.org</a></br>General career: <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a></br>Mentorship Program Manager: <a href='mailto:gloria@redi-school.org'>gloria@redi-school.org</a>"
+            "answer": "If you are from <b>ReDI School Germany</b>, then please reach out to <a href='mailto:career@redi-school.org'>career@redi-school.org</a>.</br></br>If you are from <b>ReDI School Malmö</b>, then please use the following email addresses:</br>General: <a href='mailto:malmo@redi-school.org'>malmo@redi-school.org</a></br>General career: <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a></br>Mentorship Program Manager: <a href='mailto:gloria@redi-school.org'>gloria@redi-school.org</a>"
           },
           {
             "question": "Is the mentorship service at ReDI School free of charge?",
@@ -97,7 +97,7 @@
         "qAndAs": [
           {
             "question": "Who can become a mentor?",
-            "answer": "Anyone with experience in the European market that our students can learn from can become a mentor. Our volunteer mentors come from various fields, including programming, engineering, design, HR, entrepreneurship, marketing, data science, and management."
+            "answer": "To best serve our students' needs, we can only accept mentors who have working experience in Germany or Sweden. Our volunteer mentors come from various fields, including programming, engineering, design, HR, entrepreneurship, marketing, data science, and management."
           },
           {
             "question": "Am I ReDI to become a mentor?",
@@ -116,7 +116,7 @@
             "answer": "To update or improve your profile, go to <a href='https://connect.redi-school.org/app/me'>'My Profile'</a> and add more information about yourself. Including a photo can also help attract more attention. For students, it’s important to get a sense of who you are, what it’s like to collaborate with you, and how you can assist them. Adding personal details can build trust and connection. If you have a portfolio, consider sharing your GitHub or a link to other portfolio sites to showcase your work."
           },
           {
-            "question": "How to stop receiving further applications?",
+            "question": "How can I stop receiving further applications or take a break from mentoring?",
             "answer": "To stop receiving further applications, go to your profile page and check your mentee count capacity. If it's currently too high, you can edit it to a lower number. If you want to take a break from mentoring, set your mentee count capacity to '0'. This will make your profile invisible and prevent any new applications from being sent to you."
           },
           {
@@ -308,6 +308,7 @@
           "title": "the mentor checklist",
           "headline": "Are you ready to become a mentor?",
           "items": [
+            "I have working experience in Germany or Sweden",
             "I work as a trained professional.",
             "I can support people in their career development in the digital industry.",
             "I am willing to  share knowledge and experiences with others.",

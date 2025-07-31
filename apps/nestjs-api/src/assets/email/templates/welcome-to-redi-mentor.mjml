@@ -25,27 +25,20 @@
             mentee. You're all set to make a difference as a mentor! Make sure
             you keep your profile up to date.
           </mj-text>
-
-          <mj-text mj-class="text paragraph"
-            >To log in to your profile, you can click here:</mj-text
+          <mj-button
+            href="${loginPageUrl}"
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
           >
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/signin-web.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            width="158px"
-            css-class="button-desktop"
-            href="${loginPageUrl}"
-          />
-          <mj-image
-            src="https://redi-connect-email-assets.s3-eu-west-1.amazonaws.com/signin-mobile.png"
-            align="left"
-            padding="10px 0 30px 0"
-            target="_blank"
-            css-class="button-mobile"
-            href="${loginPageUrl}"
-          />
+            Log In to Your Profile
+          </mj-button>
           <mj-text mj-class="text paragraph"
             >While you're waiting for an application from a mentee, we will add
             you to the private mentors Slack channel
@@ -54,7 +47,7 @@
               class="text-link"
               >#mentors_and_careertrainers</a
             >
-            where we post updates and mentor event invites and you can connect
+            where we post updates and mentor event invites, and you can connect
             with other ReDI mentors.</mj-text
           >
           <mj-text mj-class="text paragraph"
