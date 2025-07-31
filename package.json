@@ -14,7 +14,7 @@
     "seed": "./seed-random-data.sh",
     "build": "nx build",
     "test": "nx test",
-    "lint": "nx workspace-lint && nx lint",
+    "lint": "nx run-many --all --target=lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
