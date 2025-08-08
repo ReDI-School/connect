@@ -4,26 +4,44 @@ import { buildFrontendUrl } from '../build-frontend-url'
 
 const Rx = require('rxjs')
 const mjml2html = require('mjml')
-const nodemailer = require('nodemailer')
 const fs = require('fs')
 const path = require('path')
+const { EmailClient } = require('@azure/communication-email')
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.googlemail.com',
-  port: 465,
-  secure: true,
-  auth: {
-    user: 'career@redi-school.org',
-    pass: process.env.NX_GWORKSPACE_EMAIL_PASSWORD,
-  },
-})
+const connectionString = process.env.AZURE_COMMUNICATION_CONNECTION_STRING
+if (!connectionString)
+  throw new Error('AZURE_COMMUNICATION_CONNECTION_STRING env var not set')
+const emailClient = new EmailClient(connectionString)
+
+const formatRecipients = (emailAddresses) => {
+  if (!emailAddresses) return []
+  if (typeof emailAddresses === 'string') return [{ address: emailAddresses }]
+  return emailAddresses.map((email) => ({ address: email }))
+}
 
 const isProductionOrDemonstration = () =>
   ['production', 'demonstration', 'staging'].includes(process.env.NODE_ENV)
 
-export const sendMjmlEmail = Rx.bindNodeCallback(
-  transporter.sendMail.bind(transporter)
-)
+export const sendMjmlEmail = (emailParams) =>
+  Rx.from(
+    (async function iifeSendEmail() {
+      const emailMessage = {
+        senderAddress: 'career@redi-school.org',
+        content: {
+          subject: emailParams.subject,
+          html: emailParams.html,
+        },
+        recipients: {
+          to: formatRecipients(emailParams.to),
+          bcc: formatRecipients(emailParams.bcc),
+        },
+      }
+
+      const poller = await emailClient.beginSend(emailMessage)
+      const result = await poller.pollUntilDone()
+      return result
+    })()
+  )
 
 // TODO: I'm a duplicate of getSenderDetails in apps/api/lib/email/email.js, keep me in sync
 const getSenderDetails = (rediLocation) => {
@@ -32,7 +50,7 @@ const getSenderDetails = (rediLocation) => {
     ? 'ReDI Malmö Team'
     : 'ReDI Talent Success Team'
   const senderEmail = isMalmoLocation
-    ? 'career@redi-school.org' // TODO: set back to career-sweden when we send email via Azure
+    ? 'career-sweden@redi-school.org' // TODO: set back to career-sweden when we send email via Azure
     : 'career@redi-school.org'
   return { senderName, senderEmail }
 }
