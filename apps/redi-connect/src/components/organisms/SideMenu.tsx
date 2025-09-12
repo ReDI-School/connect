@@ -7,6 +7,7 @@ import {
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ReactComponent as Applications } from '../../assets/images/applications.svg'
+import { ReactComponent as MentorHub } from '../../assets/images/mentor-hub.svg'
 import { ReactComponent as Mentorship } from '../../assets/images/mentorship.svg'
 import { ReactComponent as Profile } from '../../assets/images/profile.svg'
 import { getAccessTokenFromLocalStorage } from '../../services/auth/auth'
@@ -96,6 +97,12 @@ const SideMenu = () => {
               <span className="badge__item">{pendingApplicationsCount}</span>
             )}
           </div>
+        </MenuItem>
+      )}
+      {isMentor && isActivated && (
+        <MenuItem url="/app/mentor-hub">
+          <MentorHub className="side-menu__icon" />
+          Mentor Hub
         </MenuItem>
       )}
     </ul>
