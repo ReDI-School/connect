@@ -46,6 +46,10 @@ const ProfilePage = lazy(
 const FourOFour = lazy(
   () => import(/* webpackChunkName: "404" */ '../pages/app/404/404')
 )
+const MentorHub = lazy(
+  () =>
+    import(/* webpackChunkName: "404" */ '../pages/app/mentor-hub/MentorHub')
+)
 
 const routes: RouteDefinition[] = [
   {
@@ -97,6 +101,11 @@ const routes: RouteDefinition[] = [
   {
     path: '/app/404',
     component: FourOFour,
+    exact: true,
+  },
+  {
+    path: '/app/mentor-hub',
+    component: MentorHub,
     exact: true,
   },
 ]
