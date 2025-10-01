@@ -13,6 +13,9 @@ export const formSelectStyles = {
     ...provided,
     svg: {
       margin: '0 0.1rem',
+      '& path': {
+        fill: 'black',
+      },
     },
   }),
   dropdownIndicator: (provided: any, state: any) => ({
@@ -21,6 +24,9 @@ export const formSelectStyles = {
     transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : 'none',
     svg: {
       margin: '0 0.1rem',
+      '& path': {
+        fill: 'black',
+      },
     },
   }),
   control: (provided: any, state: any) => ({
@@ -29,19 +35,20 @@ export const formSelectStyles = {
     minHeight: '48px',
     boxShadow: 'inset 0 2px 6px rgba(178, 180, 181, 0.3)',
     '&:hover': {
-      borderColor: 'black'
+      borderColor: 'black',
     },
   }),
   multiValue: (provided: any) => ({
     ...provided,
-    color: '#FFB298',
-    borderRadius: '4px',
-    backgroundColor: '#FFEAE2',
+    color: 'black',
+    fontSize: '14px',
+    borderRadius: '8px',
+    backgroundColor: '#daf0f4',
   }),
   multiValueLabel: (provided: any) => ({
     ...provided,
     fontSize: 'inherit',
-    color: '#FF7D55',
+    color: 'black',
   }),
   placeholder: (provided: any) => ({
     ...provided,
@@ -50,8 +57,14 @@ export const formSelectStyles = {
   }),
   multiValueRemove: (provided: any) => ({
     ...provided,
+    '&:hover': {
+      backgroundColor: '#84c5d2',
+    },
     svg: {
       padding: '0 2px',
+      '& path': {
+        fill: 'black',
+      },
     },
   }),
   menuPortal: (base) => ({ ...base, zIndex: 9999 }),
