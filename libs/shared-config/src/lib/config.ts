@@ -1,10 +1,10 @@
 export const REDI_LOCATION_NAMES = {
-  BERLIN: 'Berlin',
-  HAMBURG: 'Hamburg',
-  MALMO: 'Malmö',
-  MUNICH: 'Munich',
-  NRW: 'NRW',
-  CYBERSPACE: 'Cyberspace',
+  BERLIN: 'ReDI Berlin',
+  HAMBURG: 'ReDI Hamburg',
+  MALMO: 'ReDI Malmö',
+  MUNICH: 'ReDI Munich',
+  NRW: 'ReDI NRW',
+  CYBERSPACE: 'ReDI Online in Germany',
 } as const
 
 export const CATEGORY_GROUPS = {
