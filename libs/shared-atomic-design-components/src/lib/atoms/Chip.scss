@@ -2,27 +2,19 @@
 @import '~bulma/sass/utilities/_all';
 
 .chip {
-  display: flex;
-  height: 32px;
-  padding: 3px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: nowrap;
+  padding: 2px 12px;
   text-wrap: nowrap;
   border-radius: 8px;
-  background: var(--redi-orange-extra-light, #ffeae2);
+  background-color: $redi-blue-light;
 
-  color: var(--redi-orange, #ff7d55);
+  color: $black;
   font-family: Avenir LT Std;
   font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: $weight-normal;
   line-height: 150%; /* 21px */
 
   @include mobile() {
-    display: inline-block;
-    height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
