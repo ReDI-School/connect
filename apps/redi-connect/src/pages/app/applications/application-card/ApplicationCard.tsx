@@ -1,13 +1,13 @@
 import classnames from 'classnames'
 import moment from 'moment'
-import { Columns, Content, Heading } from 'react-bulma-components'
+import { Content, Heading } from 'react-bulma-components'
 
 import {
   AllConProfileFieldsFragment,
   MentorshipMatchStatus,
   useLoadMyProfileQuery,
 } from '@talent-connect/data-access'
-import { Icon } from '@talent-connect/shared-atomic-design-components'
+import { Chip, Icon } from '@talent-connect/shared-atomic-design-components'
 import {
   MENTORSHIP_MATCH_STATUS_LABELS,
   REDI_LOCATION_NAMES,
@@ -61,58 +61,57 @@ const ApplicationCard = ({ application }: Props) => {
         }
         onClick={() => setShowDetails(!showDetails)}
       >
-        <Columns vCentered>
-          <Columns.Column className="application-card__avatar">
+        <div className="application-card__avatar-container">
+          <div className="application-card__avatar">
             <Avatar profile={applicationUser} />
-          </Columns.Column>
+          </div>
 
-          <Columns.Column size={3} textAlignment="left">
+          <div>
             {applicationUser && (
               <>
-                <p>{applicationUser.fullName}</p>
-                <p>{REDI_LOCATION_NAMES[applicationUser.rediLocation]}</p>
+                <p
+                  className="application-card__link"
+                  onClick={() =>
+                    history.push(
+                      `/app/applications/profile/${
+                        applicationUser && applicationUser.id
+                      }`
+                    )
+                  }
+                >
+                  {applicationUser.fullName}
+                </p>
+                <div className="application-card__location">
+                  <Icon
+                    icon="location"
+                    size="small"
+                    className="application-card__location-icon"
+                  />
+                  <p className="application-card__location-name">
+                    {REDI_LOCATION_NAMES[applicationUser.rediLocation]}
+                  </p>
+                </div>
+                <p className="application-card__date">
+                  Sent on {moment(applicationDate).format('DD.MM.YYYY')}
+                </p>
               </>
             )}
-          </Columns.Column>
+          </div>
+        </div>
 
-          <Columns.Column textAlignment="centered">
-            <span
-              className="application-card__link"
-              onClick={() =>
-                history.push(
-                  `/app/applications/profile/${
-                    applicationUser && applicationUser.id
-                  }`
-                )
-              }
-            >
-              Visit Profile
-            </span>
-          </Columns.Column>
+        <div className="application-card__tag-container">
+          <div className="application-card__tag">
+            <Chip chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]} />
+          </div>
 
-          <Columns.Column textAlignment="centered" tablet={{ narrow: true }}>
-            From {moment(applicationDate).format('DD.MM.YYYY')}
-          </Columns.Column>
-
-          <Columns.Column
-            className={
-              application.status === MentorshipMatchStatus.Applied
-                ? 'application-card-pending__status'
-                : null
-            }
-            textAlignment="centered"
-          >
-            {MENTORSHIP_MATCH_STATUS_LABELS[application.status]}
-          </Columns.Column>
-
-          <Columns.Column className="application-card-dropdown">
+          <div className="application-card-dropdown">
             <Icon
               icon="chevronDown"
-              size="small"
+              size="medium"
               className={classnames({ 'icon--rotate': showDetails })}
             />
-          </Columns.Column>
-        </Columns>
+          </div>
+        </div>
       </div>
 
       <div
