@@ -2,6 +2,10 @@
 @import '_variables.scss';
 
 .mobile-application-card {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
   padding: $column-gap;
   border-radius: $radius;
   transition: $transition;
@@ -16,23 +20,52 @@
     margin-bottom: $block-spacing;
   }
 
-  &__avatar {
-    flex-grow: 0;
+  &__avatar-container,
+  &__tag-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: space-between;
+  }
 
-    .avatar {
-      width: 4rem;
-      height: 4rem;
-      z-index: 0;
-    }
+  &__avatar {
+    width: 3rem;
+    height: 3rem;
+    z-index: 0;
   }
 
   &__link {
+    font-size: 14px;
     font-weight: $weight-bold;
     color: $primary;
+    text-decoration: underline;
+    padding-bottom: 6px;
 
     &:hover {
-      text-decoration: underline;
+      color: $black;
     }
+  }
+
+  &__location {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 6px;
+
+    &-icon {
+      position: relative;
+      left: -3px;
+    }
+
+    &-name {
+      font-size: 12px;
+      color: $grey;
+    }
+  }
+
+  &__date {
+    font-size: 12px;
+    color: $grey;
   }
 
   &-details {
@@ -48,10 +81,12 @@
   }
 
   &-dropdown {
-    flex-grow: 0;
-
     .icon {
       transition: $transition;
+
+      path {
+        fill: $black;
+      }
 
       &--rotate {
         transform: rotate(180deg);
@@ -62,10 +97,6 @@
   &-pending {
     @extend .mobile-application-card;
     border: 1px solid $redi-orange-dark;
-
-    &__status {
-      color: #fd4d00;
-    }
   }
 }
 
@@ -75,8 +106,4 @@
   justify-content: flex-end;
   padding-bottom: 8px;
   gap: 30px;
-}
-
-.mobile-column {
-  padding-left: 0;
 }
