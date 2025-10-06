@@ -1,9 +1,11 @@
 import {
   AllConProfileFieldsFragment,
+  MentorshipMatchStatus,
   UserType,
 } from '@talent-connect/data-access'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { ChipVariant } from '../../../../../../../libs/shared-atomic-design-components/src/lib/atoms/Chip'
 import { ApplicationCardApplicationPropFragment } from '../../../../components/organisms/ApplicationCard.generated'
 
 interface ApplicationCardProps {
@@ -24,6 +26,24 @@ export const useApplicationCard = ({
       : application.mentee
   const currentUserIsMentor = currentUser?.userType === UserType.Mentor
 
+  const getChipVariant = (status: MentorshipMatchStatus): ChipVariant => {
+    switch (status) {
+      case MentorshipMatchStatus.Applied:
+        return 'pending'
+      case MentorshipMatchStatus.Accepted:
+      case MentorshipMatchStatus.Completed:
+        return 'default'
+      case MentorshipMatchStatus.Cancelled:
+      case MentorshipMatchStatus.DeclinedByMentor:
+      case MentorshipMatchStatus.InvalidatedAsOtherMentorAccepted:
+        return 'neutral'
+      default:
+        return 'default'
+    }
+  }
+
+  const chipVariant = getChipVariant(application.status)
+
   return {
     history,
     showDetails,
@@ -31,5 +51,6 @@ export const useApplicationCard = ({
     applicationUser,
     applicationDate,
     currentUserIsMentor,
+    chipVariant,
   }
 }
