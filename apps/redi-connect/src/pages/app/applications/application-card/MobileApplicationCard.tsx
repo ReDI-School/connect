@@ -43,6 +43,7 @@ function MobileApplicationCard({ application }: Props) {
     applicationUser,
     applicationDate,
     currentUserIsMentor,
+    chipVariant,
   } = useApplicationCard({
     application,
     currentUser,
@@ -96,9 +97,10 @@ function MobileApplicationCard({ application }: Props) {
         </div>
 
         <div className="mobile-application-card__tag-container">
-          <div className="mobile-application-card__tag">
-            <Chip chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]} />
-          </div>
+          <Chip
+            variant={chipVariant}
+            chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]}
+          />
           <div className="mobile-application-card-dropdown">
             <Icon
               icon="chevronDown"

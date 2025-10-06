@@ -46,6 +46,7 @@ const ApplicationCard = ({ application }: Props) => {
     applicationUser,
     applicationDate,
     currentUserIsMentor,
+    chipVariant,
   } = useApplicationCard({
     application,
     currentUser,
@@ -100,9 +101,10 @@ const ApplicationCard = ({ application }: Props) => {
         </div>
 
         <div className="application-card__tag-container">
-          <div className="application-card__tag">
-            <Chip chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]} />
-          </div>
+          <Chip
+            variant={chipVariant}
+            chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]}
+          />
 
           <div className="application-card-dropdown">
             <Icon
