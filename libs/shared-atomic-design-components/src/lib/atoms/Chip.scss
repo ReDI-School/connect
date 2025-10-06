@@ -5,14 +5,23 @@
   padding: 2px 12px;
   text-wrap: nowrap;
   border-radius: 8px;
-  background-color: $redi-blue-light;
-
-  color: $black;
+  background-color: $redi-blue-light; // default
+  color: $black; // default
   font-family: Avenir LT Std;
   font-size: 14px;
   font-style: normal;
   font-weight: $weight-normal;
   line-height: 150%; /* 21px */
+
+  &--pending {
+    background-color: $redi-orange-extra-light;
+    color: $redi-orange;
+  }
+
+  &--neutral {
+    background-color: $grey-extra-light;
+    color: $grey-dark;
+  }
 
   @include mobile() {
     overflow: hidden;
