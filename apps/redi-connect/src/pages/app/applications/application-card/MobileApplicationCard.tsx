@@ -1,12 +1,12 @@
 import classnames from 'classnames'
 import moment from 'moment'
-import { Columns, Content, Heading } from 'react-bulma-components'
+import { Content, Heading } from 'react-bulma-components'
 
 import {
   MentorshipMatchStatus,
   useLoadMyProfileQuery,
 } from '@talent-connect/data-access'
-import { Icon } from '@talent-connect/shared-atomic-design-components'
+import { Chip, Icon } from '@talent-connect/shared-atomic-design-components'
 import {
   MENTORSHIP_MATCH_STATUS_LABELS,
   REDI_LOCATION_NAMES,
@@ -43,6 +43,7 @@ function MobileApplicationCard({ application }: Props) {
     applicationUser,
     applicationDate,
     currentUserIsMentor,
+    chipVariant,
   } = useApplicationCard({
     application,
     currentUser,
@@ -58,54 +59,56 @@ function MobileApplicationCard({ application }: Props) {
         }
         onClick={() => setShowDetails(!showDetails)}
       >
-        <Columns breakpoint="mobile" multiline={false} vCentered>
-          <Columns.Column className="mobile-application-card__avatar">
+        <div className="mobile-application-card__avatar-container">
+          <div className="mobile-application-card__avatar">
             <Avatar profile={applicationUser} />
-          </Columns.Column>
-          <Columns.Column className="mobile-column">
+          </div>
+          <div>
             {applicationUser && (
-              <span
-                className="mobile-application-card__link"
-                onClick={() =>
-                  history.push(
-                    `/app/applications/profile/${
-                      applicationUser && applicationUser.id
-                    }`
-                  )
-                }
-              >
-                <p>{applicationUser.fullName}</p>
-              </span>
+              <>
+                <p
+                  className="mobile-application-card__link"
+                  onClick={() =>
+                    history.push(
+                      `/app/applications/profile/${
+                        applicationUser && applicationUser.id
+                      }`
+                    )
+                  }
+                >
+                  {applicationUser.fullName}
+                </p>
+                <div className="mobile-application-card__location">
+                  <Icon
+                    icon="location"
+                    size="small"
+                    className="mobile-application-card__location-icon"
+                  />
+                  <p className="mobile-application-card__location-name">
+                    {REDI_LOCATION_NAMES[applicationUser.rediLocation]}
+                  </p>
+                </div>
+                <p className="mobile-application-card__date">
+                  Sent on {moment(applicationDate).format('DD.MM.YYYY')}
+                </p>
+              </>
             )}
-            {applicationUser && (
-              <p>{REDI_LOCATION_NAMES[applicationUser.rediLocation]}</p>
-            )}
-          </Columns.Column>
-          <Columns.Column
-            className="mobile-column"
-            textAlignment="right"
-            narrow
-            textSize={6}
-          >
-            <p
-              className={
-                application.status === MentorshipMatchStatus.Applied
-                  ? 'application-card-pending__status'
-                  : null
-              }
-            >
-              {MENTORSHIP_MATCH_STATUS_LABELS[application.status]}
-            </p>
-            <p>{moment(applicationDate).format('DD.MM.YYYY')}</p>
-          </Columns.Column>
-          <Columns.Column className="mobile-application-card-dropdown">
+          </div>
+        </div>
+
+        <div className="mobile-application-card__tag-container">
+          <Chip
+            variant={chipVariant}
+            chip={MENTORSHIP_MATCH_STATUS_LABELS[application.status]}
+          />
+          <div className="mobile-application-card-dropdown">
             <Icon
               icon="chevronDown"
               size="small"
               className={classnames({ 'icon--rotate': showDetails })}
             />
-          </Columns.Column>
-        </Columns>
+          </div>
+        </div>
       </div>
 
       <div

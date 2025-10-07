@@ -29,6 +29,7 @@ import { ReactComponent as Instagram } from '../../assets/images/instagram.svg'
 import { ReactComponent as Link } from '../../assets/images/link.svg'
 import { ReactComponent as Linkedin } from '../../assets/images/linkedin.svg'
 import { ReactComponent as Loader } from '../../assets/images/loader.svg'
+import { ReactComponent as Location } from '../../assets/images/location.svg'
 import { ReactComponent as Mail } from '../../assets/images/mail.svg'
 import { ReactComponent as MapPin } from '../../assets/images/map-pin.svg'
 import { ReactComponent as Meetup } from '../../assets/images/meetup.svg'
@@ -79,6 +80,7 @@ const Icons = {
   fb: Fb,
   linkedin: Linkedin,
   loader: Loader,
+  location: Location,
   mapPin: MapPin,
   stepDisabled: StepDisabled,
   stepProgress: StepProgress,
