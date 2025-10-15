@@ -15,12 +15,10 @@
 
   &--pending {
     background-color: $redi-orange-extra-light;
-    color: $redi-orange;
   }
 
   &--neutral {
     background-color: $grey-extra-light;
-    color: $grey-dark;
   }
 
   @include mobile() {
