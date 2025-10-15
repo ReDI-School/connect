@@ -20,12 +20,4 @@
   &--neutral {
     background-color: $grey-extra-light;
   }
-
-  @include mobile() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border-radius: 6px;
-    font-size: 12px;
-  }
 }
