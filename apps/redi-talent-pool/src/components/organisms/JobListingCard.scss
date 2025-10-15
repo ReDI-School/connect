@@ -149,9 +149,8 @@
   &__ellipsis {
     &__icon {
       &:hover {
-        background-color: $redi-orange-extra-light;
+        background-color: $redi-blue-light;
         border-radius: 50%;
-        transform: scale(1.2);
       }
     }
   }
@@ -160,7 +159,7 @@
     margin-top: auto;
     font-size: 12px;
     font-weight: 400;
-    color: var(--grey, #a0a0a0);
+    color: var(--grey-dark, #5d5d5d);
     white-space: nowrap;
     height: 16px;
 

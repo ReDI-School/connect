@@ -52,7 +52,7 @@
     font-weight: 800;
     margin-bottom: 8px;
     text-overflow: ellipsis;
-    color: #a0a0a0;
+    color: $grey;
 
     @include mobile() {
       min-height: 18px;
@@ -108,7 +108,7 @@
     }
 
     &-text {
-      color: var(--grey, #a0a0a0);
+      color: var(--grey-dark, #5d5d5d);
       font-size: 12px;
       font-style: normal;
       font-weight: 400;

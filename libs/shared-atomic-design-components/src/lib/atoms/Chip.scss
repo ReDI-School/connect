@@ -20,4 +20,9 @@
   &--neutral {
     background-color: $grey-extra-light;
   }
+
+  @include mobile() {
+    border-radius: 6px;
+    font-size: 12px;
+  }
 }
