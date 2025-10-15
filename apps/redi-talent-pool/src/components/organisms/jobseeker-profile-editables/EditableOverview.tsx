@@ -6,6 +6,7 @@ import {
 import {
   Button,
   Caption,
+  Chip,
   FormSelect,
 } from '@talent-connect/shared-atomic-design-components'
 import {
@@ -14,7 +15,7 @@ import {
 } from '@talent-connect/talent-pool/config'
 import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
-import { Element, Tag } from 'react-bulma-components'
+import { Element } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import * as Yup from 'yup'
 import { useIsBusy } from '../../../hooks/useIsBusy'
@@ -53,11 +54,11 @@ export function EditableOverview({ profile, disableEditing }: Props) {
         ) : (
           <>
             <Caption>Desired positions</Caption>
-            <Tag.Group>
+            <div className="tw-flex tw-items-center tw-flex-row tw-gap-2 tw-flex-wrap">
               {profile?.desiredPositions?.map((pos) => (
-                <Tag key={pos}>{desiredPositionsIdToLabelMap[pos]}</Tag>
+                <Chip key={pos} chip={desiredPositionsIdToLabelMap[pos]} />
               ))}
-            </Tag.Group>
+            </div>
           </>
         )
       }
