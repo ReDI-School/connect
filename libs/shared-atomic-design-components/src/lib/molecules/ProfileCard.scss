@@ -34,33 +34,18 @@
     min-height: 30px;
     max-height: 60px;
     font-weight: 900;
-    margin-bottom: 4px;
+    margin-bottom: 12px;
     text-overflow: ellipsis;
     color: #000000;
-
-    @include mobile() {
-      font-size: 16px;
-      min-height: 24px;
-      line-height: 150%; /* 24px */
-      margin-bottom: 0px;
-    }
   }
 
   &__subheader {
     font-size: 14px;
     min-height: 19px;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     text-overflow: ellipsis;
-    color: #a0a0a0;
-
-    @include mobile() {
-      min-height: 18px;
-      max-height: 36px;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 900;
-    }
+    color: $grey-dark;
   }
 
   &__avatar {
@@ -108,7 +93,7 @@
     }
 
     &-text {
-      color: var(--grey, #a0a0a0);
+      color: var(--grey-dark, #5d5d5d);
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
@@ -117,25 +102,15 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-
-      @include mobile() {
-        font-size: 11px;
-      }
     }
   }
   &__languages {
     &-container {
       margin-bottom: 8px;
-      @include mobile() {
-        margin: 4px 0px;
-      }
     }
   }
 
   &__tags {
     margin-top: 24px;
-    @include mobile() {
-      margin-top: 16px;
-    }
   }
 }

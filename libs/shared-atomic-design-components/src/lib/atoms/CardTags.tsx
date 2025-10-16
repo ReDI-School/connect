@@ -24,7 +24,7 @@ const SinglelineTags = ({ items }: { items: CardTagsProps['items'] }) => {
       const chipWidths = items.map((chip) => {
         const chipSpan = document.createElement('span')
         chipSpan.style.visibility = 'hidden'
-        chipSpan.classList.add('chip')
+        chipSpan.classList.add('card-tag')
         chipSpan.innerHTML = chip
 
         parentRefDesktop.current?.appendChild(chipSpan)
@@ -67,12 +67,12 @@ const SinglelineTags = ({ items }: { items: CardTagsProps['items'] }) => {
   return (
     <div className="wrapper__desktop" ref={parentRefDesktop}>
       {visibleChips.map((chip) => (
-        <p key={chip} className="chip">
+        <p key={chip} className="card-tag">
           {chip}
         </p>
       ))}
       {remainingChips.length > 0 && (
-        <p className="chip">+{remainingChips.length}</p>
+        <p className="card-tag">+{remainingChips.length}</p>
       )}
     </div>
   )
@@ -87,7 +87,7 @@ const MultilineTags = ({ items }: { items: CardTagsProps['items'] }) => {
     <div className="wrapper__profile">
       {shortItemsList.map((chip, i) => {
         const currentTag = (
-          <p key={chip} className="chip">
+          <p key={chip} className="card-tag">
             {chip}
           </p>
         )
@@ -96,7 +96,7 @@ const MultilineTags = ({ items }: { items: CardTagsProps['items'] }) => {
         return hasAdditionalTags && isLastVisibleTag ? (
           <div className="wrapper__profile last_row" key={chip}>
             {currentTag}
-            <p key={`restNr-${i}`} className="chip plus">
+            <p key={`restNr-${i}`} className="card-tag plus">
               {'+' + additionalTagsCount}
             </p>
           </div>

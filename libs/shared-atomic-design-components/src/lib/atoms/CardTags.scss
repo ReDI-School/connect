@@ -1,7 +1,7 @@
 @import '_variables.scss';
 @import '~bulma/sass/utilities/_all';
 
-.chip {
+.card-tag {
   padding: 2px 12px;
   text-wrap: nowrap;
   border-radius: 8px;
@@ -28,7 +28,7 @@
     gap: 8px;
     flex-wrap: wrap;
 
-    .chip {
+    .card-tag {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -47,7 +47,7 @@
     }
 
     @include mobile() {
-      .chip {
+      .card-tag {
         border-radius: 6px;
         font-size: 12px;
       }

@@ -7,6 +7,7 @@ import {
 import {
   Button,
   Caption,
+  Chip,
   FaqItem,
   FormSelect,
   FormTextArea,
@@ -17,7 +18,7 @@ import {
 } from '@talent-connect/talent-pool/config'
 import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
-import { Content, Element, Tag } from 'react-bulma-components'
+import { Content, Element } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import * as Yup from 'yup'
 import { useIsBusy } from '../../../hooks/useIsBusy'
@@ -60,11 +61,11 @@ export function EditableSummary({ profile, disableEditing }: Props) {
           </Content>
           <Caption>Top skills</Caption>
           {profile?.topSkills?.length > 0 ? (
-            <Tag.Group>
+            <div className="tw-flex tw-items-center tw-flex-row tw-gap-2 tw-flex-wrap">
               {profile?.topSkills?.map((skill) => (
-                <Tag key={skill}>{topSkillsIdToLabelMap[skill]}</Tag>
+                <Chip key={skill} chip={topSkillsIdToLabelMap[skill]} />
               ))}
-            </Tag.Group>
+            </div>
           ) : (
             <EmptySectionPlaceholder
               height="slim"

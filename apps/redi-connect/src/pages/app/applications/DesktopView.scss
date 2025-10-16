@@ -22,8 +22,12 @@
 
     &--active {
       @extend .tabs-menu__item;
-      color: $red;
-      border-bottom: 3px solid $red;
+      border-bottom: 3px solid $redi-blue-dark;
+    }
+
+    &:hover {
+      color: $black;
+      border-bottom: 3px solid $redi-blue-dark;
     }
   }
 }

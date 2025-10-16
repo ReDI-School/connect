@@ -6,12 +6,7 @@
     &-container {
       display: flex;
       flex-direction: row;
-      margin-bottom: 33px;
-      height: 16px;
-
-      @include mobile {
-        margin-bottom: 16px;
-      }
+      margin-bottom: 24px;
     }
 
     &-icon {
@@ -20,22 +15,14 @@
     }
 
     &-text {
-      color: var(--grey, #a0a0a0);
+      color: var(--grey-dark, #5d5d5d);
       /* Desktop/Body Text Micro Regular */
       font-family: Avenir;
       font-size: 12px;
       font-style: normal;
       font-weight: 350;
       line-height: normal;
-
-      @include mobile() {
-        color: var(--grey, #a0a0a0);
-        font-family: Avenir;
-        font-size: 11px;
-        font-style: normal;
-        font-weight: 350;
-        line-height: normal;
-      }
+      margin-left: -2px;
     }
   }
 }

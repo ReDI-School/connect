@@ -25,13 +25,13 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    gap: 12px;
+    gap: 10px;
     justify-content: space-between;
   }
 
   &__avatar {
-    width: 3rem;
-    height: 3rem;
+    width: 2.7rem;
+    height: 2.7rem;
     z-index: 0;
   }
 
@@ -58,14 +58,15 @@
     }
 
     &-name {
+      margin-left: -3px;
       font-size: 12px;
-      color: $grey;
+      color: $grey-dark;
     }
   }
 
   &__date {
     font-size: 12px;
-    color: $grey;
+    color: $grey-dark;
   }
 
   &-details {
