@@ -10,6 +10,7 @@ export class ConMentoringSessionEntityProps implements EntityProps {
   date: Date
   @Field((type) => MentoringSessionDuration)
   minuteDuration: MentoringSessionDuration
+  meetingNotes?: string
 
   @Field((type) => ID)
   mentorId: string
