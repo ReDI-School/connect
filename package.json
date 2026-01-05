@@ -50,6 +50,7 @@
   },
   "private": true,
   "dependencies": {
+    "@azure/communication-email": "^1.0.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@formbricks/js": "^2.1.0",
