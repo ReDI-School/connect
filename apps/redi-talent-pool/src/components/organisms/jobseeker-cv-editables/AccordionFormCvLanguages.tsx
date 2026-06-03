@@ -224,6 +224,7 @@ export function JobseekerFormSectionLanguages({
           }
           onRemove={() => onRemove(item.id)}
           closeAccordionSignalSubject={closeAllAccordionsSignalSubject.current}
+          showDragHandle={false}
         >
           <FormSelect
             name={`workingLanguages[${index}].language`}

@@ -14,6 +14,7 @@ interface Props {
   onRemove?: () => void
   closeAccordionSignalSubject?: Subject<void>
   entryCategory?: string
+  showDragHandle?: boolean
 }
 
 function FormDraggableAccordion({
@@ -23,6 +24,7 @@ function FormDraggableAccordion({
   initialOpen = false,
   closeAccordionSignalSubject = null,
   entryCategory,
+  showDragHandle = true,
 }: Props) {
   const [showAnswer, setShowAnswer] = useState(initialOpen)
 
@@ -39,7 +41,10 @@ function FormDraggableAccordion({
       <Columns breakpoint="mobile" className="form-draggable-accordion__title">
         <Columns.Column onClick={() => setShowAnswer(!showAnswer)}>
           <Element style={{ display: 'flex' }}>
-            <AccordionHandleIcon style={{ marginRight: '.8rem' }} /> {title}
+            {showDragHandle ? (
+              <AccordionHandleIcon style={{ marginRight: '.8rem' }} />
+            ) : null}{' '}
+            {title}
           </Element>
         </Columns.Column>
         <Columns.Column onClick={() => setShowAnswer(!showAnswer)} narrow>
