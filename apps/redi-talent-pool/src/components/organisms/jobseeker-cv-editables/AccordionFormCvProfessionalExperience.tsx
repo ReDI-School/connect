@@ -1,4 +1,15 @@
 import {
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import {
   TpJobseekerCvExperienceRecord,
   useFindAllTpJobseekerCvExperienceRecordsQuery,
   useTpJobseekerCvExperienceRecordCreateMutation,
@@ -20,7 +31,6 @@ import { reorder } from '@talent-connect/typescript-utilities'
 import { useFormik } from 'formik'
 import { cloneDeep } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Columns, Element } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import { Subject } from 'rxjs'
@@ -28,6 +38,7 @@ import { v4 as uuidv4 } from 'uuid'
 import * as Yup from 'yup'
 import { useIsBusy } from '../../../hooks/useIsBusy'
 import { AccordionForm } from '../../molecules/AccordionForm'
+import { SortableItem } from '../../molecules/SortableItem'
 import {
   rolesAndResponsibilitiesAnswer,
   rolesAndResponsibilitiesPlaceholderText,
@@ -265,13 +276,25 @@ export function JobseekerFormSectionProfessionalExperience({
   }, [formik])
 
   const onDragEnd = useCallback(
-    (result: any) => {
-      if (!result.destination) return
+    ({ active, over }: DragEndEvent) => {
+      if (!over || active.id === over.id) return
+
+      const activeId = active.id.toString()
+      const overId = over.id.toString()
+
+      const sourceIndex = formik.values.experience.findIndex(
+        (record) => record.id === activeId
+      )
+      const destinationIndex = formik.values.experience.findIndex(
+        (record) => record.id === overId
+      )
+
+      if (sourceIndex < 0 || destinationIndex < 0) return
 
       const reorderedExperience = reorder(
         formik.values.experience,
-        result.source.index,
-        result.destination.index
+        sourceIndex,
+        destinationIndex
       )
 
       const withCorrectSortIndexes = reorderedExperience.map(
@@ -299,6 +322,12 @@ export function JobseekerFormSectionProfessionalExperience({
     [formik]
   )
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 },
+    })
+  )
+
   return (
     <>
       <Element
@@ -309,18 +338,15 @@ export function JobseekerFormSectionProfessionalExperience({
       >
         Add your relevant experience.
       </Element>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="id">
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {formik?.values?.experience.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
+      <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+        <SortableContext
+          items={formik.values.experience.map((item) => item.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div>
+            {formik?.values?.experience.map((item, index) => (
+              <SortableItem key={item.id} id={item.id}>
+                <div>
                       <FormDraggableAccordion
                         title={
                           item.title ? item.title : 'Click me to add details'
@@ -412,15 +438,12 @@ export function JobseekerFormSectionProfessionalExperience({
                           </Columns>
                         ) : null}
                       </FormDraggableAccordion>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                </div>
+              </SortableItem>
+            ))}
+          </div>
+        </SortableContext>
+      </DndContext>
 
       <div style={{ height: '30px' }} />
 
@@ -455,7 +478,7 @@ export function JobseekerFormSectionProfessionalExperience({
 }
 
 export function buildBlankExperienceRecord(
-  sortIndex: number = 1
+  sortIndex = 1
 ): FormExperienceRecord {
   return {
     id: `NEW-${uuidv4()}`,

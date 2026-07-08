@@ -1,4 +1,15 @@
 import {
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import {
   TpJobseekerProfileEducationRecord,
   useMyTpDataQuery,
   useTpJobseekerProfileEducationRecordCreateMutation,
@@ -25,7 +36,6 @@ import { useFormik } from 'formik'
 import { cloneDeep, isNumber } from 'lodash'
 import moment from 'moment'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Columns, Content, Element } from 'react-bulma-components'
 import ReactMarkdown from 'react-markdown'
 import { useQueryClient } from 'react-query'
@@ -36,6 +46,7 @@ import { useIsBusy } from '../../../hooks/useIsBusy'
 import { Editable } from '../../molecules/Editable'
 import { EmptySectionPlaceholder } from '../../molecules/EmptySectionPlaceholder'
 import { Location } from '../../molecules/Location'
+import { SortableItem } from '../../molecules/SortableItem'
 import { EditableEducationProfilePropFragment } from './EditableEducation.generated'
 
 interface Props {
@@ -339,13 +350,25 @@ function JobseekerFormSectionEducation({
   }, [formik])
 
   const onDragEnd = useCallback(
-    (result: any) => {
-      if (!result.destination) return
+    ({ active, over }: DragEndEvent) => {
+      if (!over || active.id === over.id) return
+
+      const activeId = active.id.toString()
+      const overId = over.id.toString()
+
+      const sourceIndex = formik.values.education.findIndex(
+        (record) => record.id === activeId
+      )
+      const destinationIndex = formik.values.education.findIndex(
+        (record) => record.id === overId
+      )
+
+      if (sourceIndex < 0 || destinationIndex < 0) return
 
       const reorderedEducation = reorder(
         formik.values.education,
-        result.source.index,
-        result.destination.index
+        sourceIndex,
+        destinationIndex
       )
 
       const withCorrectSortIndexes = reorderedEducation.map(
@@ -374,6 +397,12 @@ function JobseekerFormSectionEducation({
     [formik]
   )
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 },
+    })
+  )
+
   return (
     <>
       <Element
@@ -384,18 +413,15 @@ function JobseekerFormSectionEducation({
       >
         Add your relevant education.
       </Element>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="id">
-          {(provided, snapshot) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {formik?.values?.education.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
+      <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+        <SortableContext
+          items={formik.values.education.map((item) => item.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div>
+            {formik?.values?.education.map((item, index) => (
+              <SortableItem key={item.id} id={item.id}>
+                <div>
                       <FormDraggableAccordion
                         title={
                           item.title ? item.title : 'Click me to add details'
@@ -489,14 +515,11 @@ function JobseekerFormSectionEducation({
                           </Columns>
                         ) : null}
                       </FormDraggableAccordion>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
+                </div>
+              </SortableItem>
+            ))}
+          </div>
+        </SortableContext>
         <LightModal
           isOpen={Boolean(educationIdToRemove)}
           handleClose={() => setEducationIdToRemove(undefined)}
@@ -506,7 +529,7 @@ function JobseekerFormSectionEducation({
           ctaOnClick={() => onRemove(educationIdToRemove)}
           cancelLabel="Keep it"
         />
-      </DragDropContext>
+      </DndContext>
 
       <div style={{ height: '30px' }} />
 
@@ -545,7 +568,7 @@ const formCertificationTypes = certificationTypes.map(({ id, label }) => ({
   label,
 }))
 
-function buildBlankEducationRecord(sortIndex: number = 1): FormEducationRecord {
+function buildBlankEducationRecord(sortIndex = 1): FormEducationRecord {
   return {
     id: `NEW-${uuidv4()}`,
     title: '',

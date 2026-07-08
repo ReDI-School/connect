@@ -1,4 +1,15 @@
 import {
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core'
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import {
   TpJobseekerCvEducationRecord,
   useFindAllTpJobseekerCvEducationRecordsQuery,
   useTpJobseekerCvEducationRecordCreateMutation,
@@ -22,7 +33,6 @@ import { reorder } from '@talent-connect/typescript-utilities'
 import { useFormik } from 'formik'
 import { cloneDeep } from 'lodash'
 import { useCallback, useEffect, useMemo, useRef } from 'react'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Columns, Element } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
 import { Subject } from 'rxjs'
@@ -30,6 +40,7 @@ import { v4 as uuidv4 } from 'uuid'
 import * as Yup from 'yup'
 import { useIsBusy } from '../../../hooks/useIsBusy'
 import { AccordionForm } from '../../molecules/AccordionForm'
+import { SortableItem } from '../../molecules/SortableItem'
 interface Props {
   tpJobseekerCvId: string
   onClose: () => void
@@ -269,13 +280,25 @@ function JobseekerFormSectionEducation({
   }, [formik])
 
   const onDragEnd = useCallback(
-    (result: any) => {
-      if (!result.destination) return
+    ({ active, over }: DragEndEvent) => {
+      if (!over || active.id === over.id) return
+
+      const activeId = active.id.toString()
+      const overId = over.id.toString()
+
+      const sourceIndex = formik.values.education.findIndex(
+        (record) => record.id === activeId
+      )
+      const destinationIndex = formik.values.education.findIndex(
+        (record) => record.id === overId
+      )
+
+      if (sourceIndex < 0 || destinationIndex < 0) return
 
       const reorderedEducation = reorder(
         formik.values.education,
-        result.source.index,
-        result.destination.index
+        sourceIndex,
+        destinationIndex
       )
 
       const withCorrectSortIndexes = reorderedEducation.map(
@@ -303,6 +326,12 @@ function JobseekerFormSectionEducation({
     [formik]
   )
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 },
+    })
+  )
+
   return (
     <>
       <Element
@@ -313,18 +342,15 @@ function JobseekerFormSectionEducation({
       >
         Add your relevant education.
       </Element>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="id">
-          {(provided, snapshot) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {formik?.values?.education.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
+      <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+        <SortableContext
+          items={formik.values.education.map((item) => item.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div>
+            {formik?.values?.education.map((item, index) => (
+              <SortableItem key={item.id} id={item.id}>
+                <div>
                       <FormDraggableAccordion
                         title={
                           item.title ? item.title : 'Click me to add details'
@@ -418,15 +444,12 @@ function JobseekerFormSectionEducation({
                           </Columns>
                         ) : null}
                       </FormDraggableAccordion>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                </div>
+              </SortableItem>
+            ))}
+          </div>
+        </SortableContext>
+      </DndContext>
 
       <div style={{ height: '30px' }} />
 
@@ -465,7 +488,7 @@ const formCertificationTypes = certificationTypes.map(({ id, label }) => ({
   label,
 }))
 
-function buildBlankEducationRecord(sortIndex: number = 1): FormEducationRecord {
+function buildBlankEducationRecord(sortIndex = 1): FormEducationRecord {
   return {
     id: `NEW-${uuidv4()}`,
     title: '',
