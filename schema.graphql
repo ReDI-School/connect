@@ -32,6 +32,7 @@ type ConMentoringSession {
   createdAt: DateTime!
   date: DateTime!
   id: ID!
+  meetingNotes: String
   menteeId: ID!
   mentorId: ID!
   mentorshipMatchId: ID!
@@ -167,6 +168,7 @@ enum ConnectProfileStatus {
 
 input CreateConMentoringSessionInput {
   date: DateTime!
+  meetingNotes: String
   menteeId: ID!
   mentorshipMatchId: ID!
   minuteDuration: MentoringSessionDuration!

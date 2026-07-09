@@ -19,6 +19,7 @@ export class ConMentoringSessionRecord extends Record<ConMentoringSessionRecordP
       'Id',
       'Date__c',
       'Durations_in_Minutes__c',
+      'Meeting_Notes__c',
       'Mentee__c',
       'Mentor__c',
       'Mentorship_Match__c',

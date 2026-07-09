@@ -8,6 +8,7 @@ import {
   Button,
   FormDatePicker,
   FormSelect,
+  FormTextArea,
   Icon,
   Modal,
   Module,
@@ -32,6 +33,9 @@ const formMentoringSessionDurationOptions = Object.values(
 interface AddSessionProps {
   onClickHandler: Function
 }
+interface ExpandSessionProps {
+  setShowText: Function
+}
 
 const AddSession = ({ onClickHandler }: AddSessionProps) => (
   <Icon
@@ -44,11 +48,13 @@ const AddSession = ({ onClickHandler }: AddSessionProps) => (
 interface FormValues {
   date: Date
   minuteDuration: MentoringSessionDuration
+  meetingNotes?: string
 }
 
 const initialFormValues: FormValues = {
   date: new Date(),
   minuteDuration: MentoringSessionDuration.Min60,
+  meetingNotes: '',
 }
 
 const validationSchema = Yup.object({
@@ -59,10 +65,14 @@ const validationSchema = Yup.object({
       [...Object.values(MentoringSessionDuration)],
       'Please select a duration'
     ),
+  meetingNotes: Yup.string().label('Please provide a meeting note.'),
 })
 
 interface MSessions {
-  sessions: Pick<ConMentoringSession, 'id' | 'date' | 'minuteDuration'>[]
+  sessions: Pick<
+    ConMentoringSession,
+    'id' | 'date' | 'minuteDuration' | 'meetingNotes'
+  >[]
   menteeId: string
   editable?: boolean
   mentorshipMatchId: string
@@ -79,6 +89,15 @@ const MSessions = ({
   const createSessionMutation = useCreateMentoringSessionMutation()
 
   const [showAddSession, setShowAddSession] = useState(false)
+
+  const [showText, setShowText] = useState(false)
+  const ExpandSessions = ({ setShowText }: ExpandSessionProps) => (
+    <Icon
+      icon="chevronDown"
+      className="m-sessions__add"
+      onClick={() => setShowText(!showText)}
+    />
+  )
 
   const submitForm = async (
     values: FormValues,
@@ -122,6 +141,7 @@ const MSessions = ({
     <Module
       title={`Sessions ${sessions.length ? `(${sessions.length})` : ''}`}
       className="m-sessions"
+      toggles={<ExpandSessions setShowText={setShowText} />}
       buttons={editable && <AddSession onClickHandler={setShowAddSession} />}
     >
       {sessions.length > 0 ? (
@@ -132,6 +152,8 @@ const MSessions = ({
               <Element renderAs="span" textColor="grey">
                 {session.minuteDuration.replace('MIN', '')} min
               </Element>
+              <br></br>
+              {showText && session.meetingNotes}
             </li>
           ))}
         </ul>
@@ -170,6 +192,13 @@ const MSessions = ({
                 name="minuteDuration"
                 placeholder="Add the duration of the session"
                 items={formMentoringSessionDurationOptions}
+                formik={formik}
+              />
+              <FormTextArea
+                label="Please provide a short overview of your mentoring session:"
+                name="meetingNotes"
+                rows={4}
+                placeholder="e.g. what you achieved, key takeaways, homework, goals for next time."
                 formik={formik}
               />
             </form>
