@@ -1,5 +1,6 @@
 export type RediLocation =
   | 'BERLIN'
+  | 'COPENHAGEN'
   | 'HAMBURG'
   | 'MALMO'
   | 'MUNICH'

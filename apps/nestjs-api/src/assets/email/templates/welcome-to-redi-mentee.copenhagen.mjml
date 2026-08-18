@@ -1,0 +1,66 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline">Welcome to ReDI Connect!</mj-text>
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${firstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >We are happy to now officially welcome you as a mentee to ReDI
+            Connect!</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Thank you again for filling out all the required information on
+            ReDI Connect. Your profile is now officially approved, which means
+            that you are now ready to find a mentor. If you have questions,
+            please check our
+            <a
+              href="${faqPageUrl}"
+              class="text-link"
+              target="_blank"
+              rel="noreferrer"
+              >FAQ</a
+            >
+            or
+            <a href="mailto:vibe@redi-school.org" class="text-link">
+              contact us</a
+            >
+            to speak with the ReDI Copenhagen team.</mj-text
+          >
+          <mj-button
+            href="${loginPageUrl}"
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
+          >
+            Log In to Your Profile
+          </mj-button>
+          <mj-text mj-class="text paragraph"
+            >We wish you a wonderful mentorship experience!</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >If you have any questions or feedback at any point, please reach
+            out!</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

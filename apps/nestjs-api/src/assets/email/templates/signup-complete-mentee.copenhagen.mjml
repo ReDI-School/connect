@@ -1,0 +1,80 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline">Sign-up complete!</mj-text>
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${firstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph">Thank you for signing up!</mj-text>
+          <mj-text mj-class="text paragraph"
+            >Your next step is to watch a short
+            <strong>onboarding tutorial</strong> to get a good overview of the
+            mentorship program and how our matching platform ReDI Connect
+            works.</mj-text
+          >
+          <mj-text mj-class="text paragraph">
+            You will use the platform to find your mentor and connect with them
+            there.</mj-text
+          >
+          <mj-text mj-class="text paragraph">
+            Please make sure to <strong>fully watch</strong> the onboarding
+            tutorial because it contains all the
+            <strong>information</strong> you need to be able to successfully
+            navigate the platform and get a good understanding of what
+            mentorship means in the ReDI context.
+          </mj-text>
+          <mj-image
+            src="https://redi-connect-email-assets.s3.eu-west-1.amazonaws.com/redi-connect-sign-up-video-thumbnail.jpeg"
+            align="left"
+            padding="10px 0 30px 0"
+            target="_blank"
+            css-class="button-desktop"
+            href="https://www.youtube.com/watch?v=M3nwS3QfdMM"
+          />
+          <mj-image
+            src="https://redi-connect-email-assets.s3.eu-west-1.amazonaws.com/redi-connect-sign-up-video-thumbnail.jpeg"
+            align="left"
+            padding="10px 0 30px 0"
+            target="_blank"
+            css-class="button-mobile"
+            href="https://www.youtube.com/watch?v=M3nwS3QfdMM"
+          />
+          <mj-text mj-class="text paragraph"
+            >If the button above doesn't work,
+            <a
+              href="https://www.youtube.com/watch?v=M3nwS3QfdMM"
+              class="text-link"
+              >watch the video</a
+            >
+            using this link.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >After watching the video, please
+            <a href="${loginPageUrl}" class="text-link"
+              >log into your account</a
+            >
+            and complete all the steps from the stepper at the top of your
+            profile page. After sending your profile for review, you will need
+            to wait a bit until our Mentorship Program Manager approves it. Once
+            approved, you will be able to find a mentor and start your
+            mentorship journey immediately.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >We’re looking forward to getting to know you soon!
+          </mj-text>
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

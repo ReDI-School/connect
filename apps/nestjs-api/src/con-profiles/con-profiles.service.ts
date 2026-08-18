@@ -3,9 +3,9 @@ import {
   ConProfileEntity,
   ConProfileMapper,
   ConnectProfileStatus,
-  RediLocation,
   UserType,
 } from '@talent-connect/common-types'
+import { getRediLocationMatchingPool } from '@talent-connect/shared-config'
 import { deleteUndefinedProperties } from '@talent-connect/shared-utils'
 import { groupBy } from 'lodash'
 import { CurrentUserInfo } from '../auth/current-user.interface'
@@ -92,47 +92,28 @@ export class ConProfilesService {
     if (_filter.filter.languages?.length > 0)
       filter.Languages__c = { $includes: _filter.filter.languages }
 
-    // Business requirement added in February 2024: we isolate Sweden and Germany,
-    // meaning mentees in Sweden can only see mentors in Sweden and mentees in
-    // Germany can only see mentors in Germany
-    const swedenLocations = [RediLocation.MALMO]
-    const germanyLocations = [
-      RediLocation.BERLIN,
-      RediLocation.CYBERSPACE,
-      RediLocation.HAMBURG,
-      RediLocation.MUNICH,
-      RediLocation.NRW,
-    ]
-    const currentUserBelongsToRediSweden = swedenLocations.includes(
+    const matchingPool = getRediLocationMatchingPool(
       currentUserConProfile.props.rediLocation
     )
-    const currentUserBelongsToRediGermany = germanyLocations.includes(
-      currentUserConProfile.props.rediLocation
-    )
-    if (_filter.filter.locations?.length > 0) {
-      filter.ReDI_Location__c = { $in: _filter.filter.locations }
-    } else {
-      if (currentUserBelongsToRediSweden) {
-        filter.ReDI_Location__c = { $in: swedenLocations }
-      } else if (currentUserBelongsToRediGermany) {
-        filter.ReDI_Location__c = { $in: germanyLocations }
-      }
-    }
-
-    if (currentUserBelongsToRediSweden) {
-      filter.ReDI_Location__c.$in = filter.ReDI_Location__c.$in.filter(
-        (location) => swedenLocations.includes(location)
-      )
-    } else if (currentUserBelongsToRediGermany) {
-      filter.ReDI_Location__c.$in = filter.ReDI_Location__c.$in.filter(
-        (location) => germanyLocations.includes(location)
-      )
-    } else {
+    if (!matchingPool) {
       throw new Error(
         'ConProfilesService:findAllAvailableMentors(): ' +
           "Couldn't categorize current user's Connect " +
-          ' Profile as belonging to either Sweden or Germany.'
+          'profile into a ReDI location matching pool.'
       )
+    }
+
+    const requestedLocations =
+      _filter.filter.locations?.length > 0
+        ? _filter.filter.locations
+        : matchingPool
+    const allowedLocations = requestedLocations.filter((location) =>
+      (matchingPool as readonly string[]).includes(location)
+    )
+    if (allowedLocations.length === 0) return []
+
+    filter.ReDI_Location__c = {
+      $in: allowedLocations,
     }
 
     return this.findAll(filter)

@@ -1,0 +1,46 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body>
+    <mj-section css-class="section">
+      <mj-column mj-class="column" width="100%">
+        <mj-divider mj-class="divider-bottom" />
+        <mj-table padding="0">
+          <tr>
+            <td class="table-cell table-img" rowspan="4">
+              <img
+                src="https://redi-connect-email-assets.s3.eu-west-1.amazonaws.com/redi-logo.jpeg"
+                width="52px"
+              />
+            </td>
+            <td class="table-cell table-headline td-mobile" colspan="1">
+              ReDI Copenhagen Team
+            </td>
+          </tr>
+
+          <tr>
+            <td class="table-cell td-mobile">
+              General and mentorship support -
+              <a href="mailto:vibe@redi-school.org" class="text-link"
+                >vibe@redi-school.org</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td class="table-cell td-mobile">
+              <strong>Copenhagen office:</strong><br />
+              ReDI School of Digital Integration<br />
+              Bådehavnsgade 42P, 2450 København SV, Denmark
+              <br /><br />
+              <a
+                href="https://www.redi-school.org/redi-school-copenhagen"
+                class="text-link"
+                target="_blank"
+                >www.redi-school.org/redi-school-copenhagen</a
+              >
+            </td>
+          </tr></mj-table
+        >
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

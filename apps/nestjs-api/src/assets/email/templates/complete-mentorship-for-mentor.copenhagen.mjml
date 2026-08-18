@@ -1,0 +1,56 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >All good things come to an end...</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${mentorFirstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Congrats on completing your mentorship journey with
+            ${menteeFirstName}!
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >We hope it was a great experience for both of you and that you
+            reached all the goals that you may have set.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >If you have <strong>logged two or more mentoring sessions</strong>,
+            both you and your mentee will receive a
+            <strong>Certificate of Completion</strong> via email within the next
+            few days.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >We'd highly appreciate your feedback regarding the mentorship to
+            continuously improve, help forge better matches and make it the best
+            experience possible for everyone. Please complete this
+            <a
+              href="https://redischool.typeform.com/to/aNsdn7co"
+              class="text-link"
+              >feedback survey</a
+            >. It only takes about 5-10 minutes of your time.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >${mentorFirstName}, thank you for your time and commitment to the
+            ReDI community!</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >We see you and appreciate you very much!</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

@@ -605,6 +605,7 @@ type Query {
 
 enum RediLocation {
   BERLIN
+  COPENHAGEN
   CYBERSPACE
   HAMBURG
   MALMO

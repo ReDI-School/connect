@@ -1,0 +1,54 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >Congratulations! Mentor ${mentorFullName} has accepted your
+            application, ${menteeName}!</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text paragraph">Hi ${menteeName},</mj-text>
+          <mj-text mj-class="text paragraph">
+            Great news! Your application has been accepted by your new mentor,
+            <strong>${mentorFullName}</strong>. Here is a message from them:
+          </mj-text>
+          <mj-text mj-class="text quote">${mentorReplyMessageOnAccept}</mj-text>
+
+          <mj-text mj-class="text" padding="20px 0"
+            >Please make sure to respond to your mentor's message as soon as
+            possible so that you can begin your mentorship journey
+            together.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >For your reference, ${mentorFirstName}'s email address is listed as
+            a recipient of this email. So, feel free to hit the
+            <strong>'Reply to all'</strong>
+            button. You can also reach them directly at
+            <a href="mailto:${mentorEmail}" class="text-link">${mentorEmail}</a
+            >.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >If you have any questions, you can always email us at
+            <a href="mailto:vibe@redi-school.org" class="text-link"
+              >vibe@redi-school.org</a
+            >
+            or message us on Slack.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >We wish you a successful and enjoyable mentorship with
+            ${mentorFirstName}!</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

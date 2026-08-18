@@ -1,11 +1,81 @@
 export const REDI_LOCATION_NAMES = {
   BERLIN: 'ReDI Berlin',
+  COPENHAGEN: 'ReDI Copenhagen',
   HAMBURG: 'ReDI Hamburg',
   MALMO: 'ReDI Malmö',
   MUNICH: 'ReDI Munich',
   NRW: 'ReDI NRW',
   CYBERSPACE: 'ReDI Online in Germany',
 } as const
+
+export type RediLocationId = keyof typeof REDI_LOCATION_NAMES
+
+export const REDI_LOCATION_MATCHING_POOLS = {
+  germany: ['BERLIN', 'HAMBURG', 'MUNICH', 'NRW', 'CYBERSPACE'],
+  malmo: ['MALMO'],
+  copenhagen: ['COPENHAGEN'],
+} as const
+
+export function getRediLocationMatchingPool(
+  location: string
+): readonly RediLocationId[] | undefined {
+  return Object.values(REDI_LOCATION_MATCHING_POOLS).find((pool) =>
+    (pool as readonly string[]).includes(location)
+  )
+}
+
+export interface RediConnectLocationDetails {
+  senderName: string
+  senderEmail: string
+  contactEmail: string
+  websiteUrl: string
+  mentorOnboardingCalendarUrl?: string
+  menteeSupportCalendarUrl?: string
+}
+
+const GERMANY_CONNECT_LOCATION_DETAILS: RediConnectLocationDetails = {
+  senderName: 'ReDI Talent Success Team',
+  senderEmail: 'career@redi-school.org',
+  contactEmail: 'career@redi-school.org',
+  websiteUrl: 'https://www.redi-school.org/',
+  mentorOnboardingCalendarUrl: 'https://calendar.app.google/9rdEH1MKqz3VqGoj6',
+  menteeSupportCalendarUrl: 'https://calendar.app.google/Q4sYTuqioz6t6ZXHA',
+}
+
+export const REDI_CONNECT_LOCATION_DETAILS: Record<
+  RediLocationId,
+  RediConnectLocationDetails
+> = {
+  BERLIN: GERMANY_CONNECT_LOCATION_DETAILS,
+  COPENHAGEN: {
+    senderName: 'ReDI Copenhagen Team',
+    senderEmail: 'career@redi-school.org',
+    contactEmail: 'vibe@redi-school.org',
+    websiteUrl: 'https://www.redi-school.org/redi-school-copenhagen',
+  },
+  HAMBURG: GERMANY_CONNECT_LOCATION_DETAILS,
+  MALMO: {
+    senderName: 'ReDI Malmö Team',
+    senderEmail: 'career@redi-school.org',
+    contactEmail: 'career.sweden@redi-school.org',
+    websiteUrl: 'https://www.redi-school.org/redi-school-malmo',
+    mentorOnboardingCalendarUrl:
+      'https://calendar.app.google/u7EEPxtDVqif32Gz7',
+    menteeSupportCalendarUrl: 'https://calendar.app.google/u7EEPxtDVqif32Gz7',
+  },
+  MUNICH: GERMANY_CONNECT_LOCATION_DETAILS,
+  NRW: GERMANY_CONNECT_LOCATION_DETAILS,
+  CYBERSPACE: GERMANY_CONNECT_LOCATION_DETAILS,
+}
+
+export function getRediConnectLocationDetails(
+  location?: string
+): RediConnectLocationDetails {
+  return (
+    REDI_CONNECT_LOCATION_DETAILS[location as RediLocationId] ||
+    GERMANY_CONNECT_LOCATION_DETAILS
+  )
+}
 
 export const CATEGORY_GROUPS = {
   softwareEngineering: 'Software Engineering',

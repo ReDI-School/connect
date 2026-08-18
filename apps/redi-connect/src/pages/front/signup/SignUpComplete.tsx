@@ -1,11 +1,9 @@
-import {
-  RediLocation,
-  useLoadMyProfileQuery,
-} from '@talent-connect/data-access'
+import { useLoadMyProfileQuery } from '@talent-connect/data-access'
 import {
   Button,
   Heading,
 } from '@talent-connect/shared-atomic-design-components'
+import { getRediConnectLocationDetails } from '@talent-connect/shared-config'
 import { Columns, Content, Form } from 'react-bulma-components'
 import { useHistory, useParams } from 'react-router-dom'
 import { Teaser } from '../../../components/molecules'
@@ -20,8 +18,9 @@ export default function SignUpComplete() {
   const loopbackUserId = getAccessTokenFromLocalStorage().userId
   const myProfileQuery = useLoadMyProfileQuery({ loopbackUserId })
 
-  const isMalmoLocation =
-    myProfileQuery.data?.conProfile.rediLocation === RediLocation.Malmo
+  const locationDetails = getRediConnectLocationDetails(
+    myProfileQuery.data?.conProfile.rediLocation
+  )
   const isPartnershipMentor =
     myProfileQuery.data?.conProfile.mentor_isPartnershipMentor === true
 
@@ -106,24 +105,9 @@ export default function SignUpComplete() {
           </Form.Field>
           <Content size="small" renderAs="p">
             Do you have questions? Feel free to contact us{' '}
-            <a
-              href={
-                isMalmoLocation
-                  ? 'mailto:career.sweden@redi-school.org'
-                  : 'mailto:career@redi-school.org'
-              }
-            >
-              here
-            </a>{' '}
-            or visit our{' '}
-            <a
-              href={
-                isMalmoLocation
-                  ? 'https://www.redi-school.org/redi-school-malmo'
-                  : 'https://www.redi-school.org/'
-              }
-              target="__blank"
-            >
+            <a href={`mailto:${locationDetails.contactEmail}`}>here</a> or visit
+            our{' '}
+            <a href={locationDetails.websiteUrl} target="__blank">
               ReDI school website
             </a>{' '}
             for more information.

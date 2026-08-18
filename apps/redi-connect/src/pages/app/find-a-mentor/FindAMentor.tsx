@@ -20,10 +20,10 @@ import {
 } from '@talent-connect/shared-atomic-design-components'
 import {
   CATEGORIES,
+  getRediLocationMatchingPool,
   LANGUAGES,
   REDI_LOCATION_NAMES,
 } from '@talent-connect/shared-config'
-import { objectKeys } from '@talent-connect/typescript-utilities'
 import { useEffect, useState } from 'react'
 import { Columns, Content, Tag } from 'react-bulma-components'
 import { useQueryClient } from 'react-query'
@@ -169,31 +169,13 @@ const FindAMentor = () => {
     resetPaginationPageNumber()
   }
 
-  const isMalmoLocation = profile?.rediLocation === RediLocation.Malmo
-
-  const filterRediLocations = objectKeys(REDI_LOCATION_NAMES)
-    .filter((location) => {
-      if (!profile) return false
-      const currentUserWithRediSweden = [RediLocation.Malmo].includes(
-        profile?.rediLocation
-      )
-      const currentUserWithRediGermany = [
-        RediLocation.Berlin,
-        RediLocation.Cyberspace,
-        RediLocation.Hamburg,
-        RediLocation.Munich,
-        RediLocation.Nrw,
-      ].includes(profile?.rediLocation)
-      if (location === RediLocation.Malmo && currentUserWithRediSweden)
-        return true
-      if (location !== RediLocation.Malmo && currentUserWithRediGermany)
-        return true
-      return false
-    })
-    .map((location) => ({
-      value: location,
-      label: REDI_LOCATION_NAMES[location as RediLocation] as string,
-    }))
+  const matchingPool = profile
+    ? getRediLocationMatchingPool(profile.rediLocation)
+    : undefined
+  const filterRediLocations = (matchingPool ?? []).map((location) => ({
+    value: location,
+    label: REDI_LOCATION_NAMES[location as RediLocation] as string,
+  }))
 
   if (profile && profile?.profileStatus !== ConnectProfileStatus.Approved)
     return <LoggedIn />
@@ -273,7 +255,7 @@ const FindAMentor = () => {
             onChange={(item) => toggleFilters(languages, 'languages', item)}
           />
         </div>
-        {!isMalmoLocation && (
+        {filterRediLocations.length > 1 && (
           <div className="filters-inner">
             <FilterDropdown
               items={filterRediLocations}
