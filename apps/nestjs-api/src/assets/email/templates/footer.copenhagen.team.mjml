@@ -19,23 +19,31 @@
 
           <tr>
             <td class="table-cell td-mobile">
-              General and mentorship support -
-              <a href="mailto:vibe@redi-school.org" class="text-link"
-                >vibe@redi-school.org</a
+              <strong>General Coaching Program:</strong>
+              <a href="mailto:connectdk@redi-school.org" class="text-link"
+                >connectdk@redi-school.org</a
               >
             </td>
           </tr>
           <tr>
             <td class="table-cell td-mobile">
-              <strong>Copenhagen office:</strong><br />
-              ReDI School of Digital Integration<br />
+              <strong>Coaching Program Manager:</strong>
+              <a href="mailto:basak@redi-school.dk" class="text-link"
+                >basak@redi-school.dk</a
+              >
+            </td>
+          </tr>
+          <tr>
+            <td class="table-cell td-mobile">
+              <strong>ReDI School of Digital Integration Copenhagen</strong
+              ><br />
               Bådehavnsgade 42P, 2450 København SV, Denmark
               <br /><br />
               <a
-                href="https://www.redi-school.org/redi-school-copenhagen"
+                href="https://www.redi-school.org/redi-school-denmark"
                 class="text-link"
                 target="_blank"
-                >www.redi-school.org/redi-school-copenhagen</a
+                >www.redi-school.org/redi-school-denmark</a
               >
             </td>
           </tr></mj-table

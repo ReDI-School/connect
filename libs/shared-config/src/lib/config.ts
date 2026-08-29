@@ -49,9 +49,9 @@ export const REDI_CONNECT_LOCATION_DETAILS: Record<
   BERLIN: GERMANY_CONNECT_LOCATION_DETAILS,
   COPENHAGEN: {
     senderName: 'ReDI Copenhagen Team',
-    senderEmail: 'career@redi-school.org',
-    contactEmail: 'vibe@redi-school.org',
-    websiteUrl: 'https://www.redi-school.org/redi-school-copenhagen',
+    senderEmail: 'connectdk@redi-school.org',
+    contactEmail: 'connectdk@redi-school.org',
+    websiteUrl: 'https://www.redi-school.org/redi-school-denmark',
   },
   HAMBURG: GERMANY_CONNECT_LOCATION_DETAILS,
   MALMO: {
