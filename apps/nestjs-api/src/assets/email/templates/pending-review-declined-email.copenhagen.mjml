@@ -29,6 +29,8 @@
           <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
         </mj-column>
       </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
     </mj-wrapper>
   </mj-body>
 </mjml>
