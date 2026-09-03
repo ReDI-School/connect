@@ -39,7 +39,7 @@ const GERMANY_CONNECT_LOCATION_DETAILS: RediConnectLocationDetails = {
   contactEmail: 'career@redi-school.org',
   websiteUrl: 'https://www.redi-school.org/',
   mentorOnboardingCalendarUrl: 'https://calendar.app.google/9rdEH1MKqz3VqGoj6',
-  menteeSupportCalendarUrl: 'https://calendar.app.google/Q4sYTuqioz6t6ZXHA',
+  menteeSupportCalendarUrl: 'https://calendar.app.google/DbLSQB1husWutsCc6',
 }
 
 export const REDI_CONNECT_LOCATION_DETAILS: Record<
