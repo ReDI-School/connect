@@ -13,32 +13,28 @@
               />
             </td>
             <td class="table-cell table-headline td-mobile" colspan="1">
-              ReDI Talent Success Team
+              ReDI Copenhagen Team
             </td>
           </tr>
 
           <tr>
             <td class="table-cell td-mobile">
-              General -
-              <a href="mailto:career@redi-school.org" class="text-link"
-                >career@redi-school.org</a
-              >
-            </td>
-          </tr>
-          <tr>
-            <td class="table-cell td-mobile">
-              Mentorship Program Manager -
-              <a href="mailto:noha@redi-school.org" class="text-link"
-                >noha@redi-school.org</a
+              Coaching Program -
+              <a href="mailto:connectdk@redi-school.org" class="text-link"
+                >connectdk@redi-school.org</a
               >
               <br /><br />
-              ReDI School of Digital Integration<br />
-              Mehringdamm 55, 10961 Berlin<br />
+              ReDI School of Digital Integration Copenhagen
+              <br />
+              Bådehavnsgade 42P,
+              <br />
+              2450 København SV, Denmark
+              <br />
               <a
-                href="https://www.redi-school.org"
+                href="https://www.redi-school.org/redi-school-denmark"
                 class="text-link"
                 target="_blank"
-                >www.redi-school.org</a
+                >www.redi-school.org/redi-school-denmark</a
               >
             </td>
           </tr></mj-table

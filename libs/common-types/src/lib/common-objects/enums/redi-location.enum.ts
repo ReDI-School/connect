@@ -2,6 +2,7 @@ import { registerEnumType } from '@nestjs/graphql'
 
 export enum RediLocation {
   BERLIN = 'BERLIN',
+  COPENHAGEN = 'COPENHAGEN',
   HAMBURG = 'HAMBURG',
   MALMO = 'MALMO',
   MUNICH = 'MUNICH',

@@ -927,6 +927,7 @@ export type QueryTpJobseekerProfileArgs = {
 
 export enum RediLocation {
   Berlin = 'BERLIN',
+  Copenhagen = 'COPENHAGEN',
   Cyberspace = 'CYBERSPACE',
   Hamburg = 'HAMBURG',
   Malmo = 'MALMO',

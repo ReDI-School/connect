@@ -12,34 +12,19 @@
             >Hi ${firstName},</mj-text
           >
           <mj-text mj-class="text paragraph"
-            >We are happy to now officially welcome you as a mentee to ReDI
+            >We are happy to now officially welcome you as a mentor to ReDI
             Connect!</mj-text
           >
           <mj-text mj-class="text paragraph"
             >Thank you again for filling out all the required information on
-            ReDI Connect. Your profile is now officially approved, which means
-            that you are now ready to find a mentor. If you have questions,
-            please check our
-            <a
-              href="${faqPageUrl}"
-              class="text-link"
-              target="_blank"
-              rel="noreferrer"
-              >FAQ</a
-            >,
-            <a href="mailto:career@redi-school.org" class="text-link">
-              contact us</a
-            >
-            or
-            <a
-              href="https://calendar.app.google/DbLSQB1husWutsCc6"
-              target="_blank"
-              rel="noreferrer"
-              class="text-link"
-              >book a call</a
-            >
-            with our Mentorship Program Manager.</mj-text
-          >
+            ReDI Connect and having made time to meet for our onboarding
+            session.
+          </mj-text>
+          <mj-text mj-class="text paragraph">
+            Your profile has been approved. Students can now apply to be your
+            mentee. You're all set to make a difference as a mentor! Make sure
+            you keep your profile up to date.
+          </mj-text>
           <mj-button
             href="${loginPageUrl}"
             background-color="#F15A22"
@@ -55,18 +40,23 @@
             Log In to Your Profile
           </mj-button>
           <mj-text mj-class="text paragraph"
-            >We wish you a wonderful mentorship experience!</mj-text
+            >While you're waiting for an application from a mentee, the ReDI
+            Copenhagen team will send you details about mentor updates, events,
+            and ways to connect with other ReDI mentors.</mj-text
           >
           <mj-text mj-class="text paragraph"
-            >If you have any questions or feedback at any point, please reach
-            out!</mj-text
+            >If you have any questions or feedback at any point, feel free to
+            reach out.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >We wish you a wonderful mentorship experience!</mj-text
           >
 
           <mj-text mj-class="text">All the best,</mj-text>
-          <mj-text mj-class="text">Your ReDI Talent Success Team</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
         </mj-column>
       </mj-section>
-      <mj-include path="./footer.career.support.team.mjml" />
+      <mj-include path="./footer.copenhagen.team.mjml" />
       <mj-section />
     </mj-wrapper>
   </mj-body>

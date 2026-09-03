@@ -26,19 +26,12 @@
               target="_blank"
               rel="noreferrer"
               >FAQ</a
-            >,
-            <a href="mailto:career@redi-school.org" class="text-link">
-              contact us</a
             >
             or
-            <a
-              href="https://calendar.app.google/DbLSQB1husWutsCc6"
-              target="_blank"
-              rel="noreferrer"
-              class="text-link"
-              >book a call</a
+            <a href="mailto:connectdk@redi-school.org" class="text-link">
+              contact us</a
             >
-            with our Mentorship Program Manager.</mj-text
+            to speak with the ReDI Copenhagen team.</mj-text
           >
           <mj-button
             href="${loginPageUrl}"
@@ -63,10 +56,10 @@
           >
 
           <mj-text mj-class="text">All the best,</mj-text>
-          <mj-text mj-class="text">Your ReDI Talent Success Team</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
         </mj-column>
       </mj-section>
-      <mj-include path="./footer.career.support.team.mjml" />
+      <mj-include path="./footer.copenhagen.team.mjml" />
       <mj-section />
     </mj-wrapper>
   </mj-body>
