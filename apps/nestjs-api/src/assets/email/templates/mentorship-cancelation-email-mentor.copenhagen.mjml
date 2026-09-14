@@ -1,0 +1,35 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >Important Update: ReDI Mentorship Cancellation</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Dear ${mentorFirstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >we have processed your request to cancel your mentorship with
+            ${menteeFullName}, and we've notified the mentee accordingly. This
+            opens up an opportunity for other mentees to apply for the available
+            spot.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >We value your feedback and would appreciate it if you could share
+            the reason behind your decision to cancel the mentorship. Your input
+            will help us enhance the mentorship program for the future. Please
+            feel free to reach out to us via email.</mj-text
+          >
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

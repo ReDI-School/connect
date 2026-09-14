@@ -46,7 +46,7 @@
   },
   "preFooter": {
     "headline": "Want to get in touch?",
-    "content": "If you have questions or just want to say hello, feel free to contact a member of our ReDI Talent Success Team at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> (for ReDI Schools in Germany) or <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> (for ReDI School in Sweden)."
+    "content": "If you have questions or just want to say hello, contact our ReDI Talent Success Team at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> (Germany), <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> (Sweden), or <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a> (Denmark)."
   },
   "faq": {
     "headline": "Frequently asked questions",
@@ -80,11 +80,11 @@
           },
           {
             "question": "If I have any questions, whom should I contact?",
-            "answer": "If you are from <b>ReDI School Germany</b>, then please reach out to <a href='mailto:career@redi-school.org'>career@redi-school.org</a>.</br></br>If you are from <b>ReDI School Malmö</b>, then please use the following email addresses:</br>General: <a href='mailto:malmo@redi-school.org'>malmo@redi-school.org</a></br>General career: <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a></br>Mentorship Program Manager: <a href='mailto:gloria@redi-school.org'>gloria@redi-school.org</a>"
+            "answer": "If you are from <b>ReDI School Germany</b>, please reach out to <a href='mailto:career@redi-school.org'>career@redi-school.org</a>.</br></br>If you are from <b>ReDI School Malmö</b>, please use the following email addresses:</br>General: <a href='mailto:malmo@redi-school.org'>malmo@redi-school.org</a></br>General career: <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a></br>Mentorship Program Manager: <a href='mailto:gloria@redi-school.org'>gloria@redi-school.org</a>.</br></br>If you are from <b>ReDI School Copenhagen</b>, please reach out to the ReDI Denmark team at <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a>."
           },
           {
             "question": "Is the mentorship service at ReDI School free of charge?",
-            "answer": "Yes, mentorship at ReDI School is completely free of charge! Our mentors are wonderful volunteers who generously dedicate their time and passion to support our learners on their journey. Their commitment helps make the mentoring experience impactful and accessible for everyone. <b>Important:</b> If at any point a mentor suggests or refers you to a paid service where they are a direct beneficiary, please report this to us immediately at <a href=‘mailto:career@redi-school.org’>career@redi-school.org</a> <b>(for ReDI Schools in Germany)</b> and at <a href=‘mailto:career.sweden@redi-school.org’>career.sweden@redi-school.org</a> <b>(for ReDI School in Sweden)</b>. We want to ensure that all mentorship remains free and aligned with ReDI's values of volunteer-driven support."
+            "answer": "Yes, mentorship at ReDI School is completely free of charge! Our mentors are wonderful volunteers who generously dedicate their time and passion to support our learners on their journey. Their commitment helps make the mentoring experience impactful and accessible for everyone. <b>Important:</b> If at any point a mentor suggests or refers you to a paid service where they are a direct beneficiary, please report this to us immediately at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <b>(Germany)</b>, <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <b>(Sweden)</b>, or <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a> <b>(Denmark)</b>. We want to ensure that all mentorship remains free and aligned with ReDI's values of volunteer-driven support."
           },
           {
             "question": "Will ReDI School check in with me to see how my long-term mentorship is going?",
@@ -97,7 +97,7 @@
         "qAndAs": [
           {
             "question": "Who can become a mentor?",
-            "answer": "To best serve our students' needs, we can only accept mentors who have working experience in Germany or Sweden. Our volunteer mentors come from various fields, including programming, engineering, design, HR, entrepreneurship, marketing, data science, and management."
+            "answer": "To best serve our students' needs, we can only accept mentors who have working experience in Germany, Sweden, or Denmark. Our volunteer mentors come from various fields, including programming, engineering, design, HR, entrepreneurship, marketing, data science, and management."
           },
           {
             "question": "Am I ReDI to become a mentor?",
@@ -121,11 +121,11 @@
           },
           {
             "question": "What to do if my mentee comes to me with issues I am not qualified to answer?",
-            "answer": "If your mentee approaches you with any significant issues beyond the scope of your mentorship, kindly reach out to us at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <b>(for ReDI Schools in Germany)</b> and at <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <b>(for ReDI School in Sweden)</b>. You can also reach out to the mentorship community on slack. Please refrain from attempting to address psychological or financial matters independently. We maintain a connection with Ipso, an organization providing online psychosocial counseling, and can facilitate their support for your mentee when needed."
+            "answer": "If your mentee approaches you with any significant issues beyond the scope of your mentorship, kindly reach out to us at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <b>(Germany)</b>, <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <b>(Sweden)</b>, or <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a> <b>(Denmark)</b>. You can also reach out to the mentorship community on Slack. Please refrain from attempting to address psychological or financial matters independently. We maintain a connection with Ipso, an organization providing online psychosocial counseling, and can facilitate their support for your mentee when needed."
           },
           {
             "question": "Is there a way to meet the ReDI Connect Community?",
-            "answer": "Yes, you can meet the ReDI Connect Community in several ways. Before each new semester, we typically organize info sessions for prospective ReDI volunteers. Once you become a mentor, you will be informed about upcoming events and workshops through our dedicated mentor Slack channel. Additionally, the ReDI Sweden team arranges various events for volunteers and students, and you'll receive invitations to those gatherings."
+            "answer": "Yes, you can meet the ReDI Connect Community in several ways. Before each new semester, we typically organize info sessions for prospective ReDI volunteers. Once you become a mentor, you will be informed about upcoming events and workshops through our dedicated mentor Slack channel. The local ReDI teams in Sweden and Denmark also arrange events for volunteers and students, and you'll receive invitations to those gatherings."
           }
         ]
       },
@@ -138,11 +138,11 @@
           },
           {
             "question": "Am I ready to get a mentor?",
-            "answer": "If you're unsure whether it's the right time to get a mentor, you can sign up and <a href='https://calendar.app.google/Q4sYTuqioz6t6ZXHA'>schedule a meeting</a> with our Mentorship Community Manager. They will help you explore the best options for your current stage and assist you in setting your professional goals. This will help you identify the areas where you would benefit most from support during your mentoring sessions."
+            "answer": "If you're unsure whether it's the right time to get a mentor, you can sign up and <a href='https://calendar.app.google/DbLSQB1husWutsCc6'>schedule a meeting</a> with our Mentorship Community Manager. Copenhagen users can instead contact the ReDI Denmark team at <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a>. They will help you explore the best options for your current stage and assist you in setting your professional goals. This will help you identify the areas where you would benefit most from support during your mentoring sessions."
           },
           {
             "question": "How do I find the right mentor?",
-            "answer": "Make sure your profile reflects your needs and explains what you would like to get out of the mentorship. When looking for mentor profiles, use the filters to see the most relevant profiles. If you’re uncertain about which mentor to approach, feel free to contact a member of our ReDI Talent Success Team at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <strong>(for ReDI Schools in Germany)</strong> or <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <strong>(for ReDI School in Sweden)</strong>. Together, we can explore potential mentorship matches."
+            "answer": "Make sure your profile reflects your needs and explains what you would like to get out of the mentorship. When looking for mentor profiles, use the filters to see the most relevant profiles. If you’re uncertain about which mentor to approach, contact <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <strong>(Germany)</strong>, <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <strong>(Sweden)</strong>, or <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a> <strong>(Denmark)</strong>. Together, we can explore potential mentorship matches."
           },
           {
             "question": "What happens after I've sent an application?",
@@ -191,7 +191,7 @@
           },
           {
             "question": "What to do if the mentorship match doesn't feel right?",
-            "answer": "If the mentorship match doesn’t feel right or if you believe it should not continue, that’s completely okay. You can contact a member of our ReDI Talent Success Team <br>at <a href='career@redi-school.org'>career@redi-school.org</a> <b>(for ReDI Schools in Germany)</b> or <br><a href='career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <b>(for ReDI School in Sweden)</b>. <br> We will assist you in finding a solution or arranging a new match. It's better to address these concerns rather than staying in a mentorship relationship that isn’t fulfilling or has reached its end."
+            "answer": "If the mentorship match doesn’t feel right or if you believe it should not continue, that’s completely okay. Contact our ReDI Talent Success Team at <a href='mailto:career@redi-school.org'>career@redi-school.org</a> <b>(Germany)</b>, <a href='mailto:career.sweden@redi-school.org'>career.sweden@redi-school.org</a> <b>(Sweden)</b>, or <a href='mailto:connectdk@redi-school.org'>connectdk@redi-school.org</a> <b>(Denmark)</b>. We will assist you in finding a solution or arranging a new match. It's better to address these concerns rather than staying in a mentorship relationship that isn’t fulfilling or has reached its end."
           }
         ]
       }
@@ -308,7 +308,7 @@
           "title": "the mentor checklist",
           "headline": "Are you ready to become a mentor?",
           "items": [
-            "I have working experience in Germany or Sweden",
+            "I have working experience in Germany, Sweden, or Denmark",
             "I work as a trained professional.",
             "I can support people in their career development in the digital industry.",
             "I am willing to  share knowledge and experiences with others.",

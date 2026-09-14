@@ -1,5 +1,6 @@
 'use strict'
 
+import { getRediConnectLocationDetails } from '@talent-connect/shared-config'
 import { buildFrontendUrl } from '../build-frontend-url'
 
 const Rx = require('rxjs')
@@ -25,15 +26,9 @@ export const sendMjmlEmail = Rx.bindNodeCallback(
   transporter.sendMail.bind(transporter)
 )
 
-// TODO: I'm a duplicate of getSenderDetails in apps/api/lib/email/email.js, keep me in sync
-const getSenderDetails = (rediLocation) => {
-  const isMalmoLocation = rediLocation === 'MALMO'
-  const senderName = isMalmoLocation
-    ? 'ReDI Malmö Team'
-    : 'ReDI Talent Success Team'
-  const senderEmail = isMalmoLocation
-    ? 'career@redi-school.org' // TODO: set back to career-sweden when we send email via Azure
-    : 'career@redi-school.org'
+export const getSenderDetails = (rediLocation) => {
+  const { senderName, senderEmail } =
+    getRediConnectLocationDetails(rediLocation)
   return { senderName, senderEmail }
 }
 
@@ -67,7 +62,7 @@ function buildSubjectLine(subject, env) {
   }
 }
 
-const convertTemplateToHtml = (rediLocation, templateString) => {
+export const convertTemplateToHtml = (rediLocation, templateString) => {
   if (rediLocation) rediLocation = rediLocation.toLowerCase()
   const defaultTemplateFileName = `${templateString}.mjml`
   const locationSpecificTemplateFileName = `${templateString}.${rediLocation}.mjml`
@@ -504,6 +499,7 @@ export const sendMentorshipDeclinedEmail = ({
 const formatLocationName = (locationIdentifier) => {
   return {
     BERLIN: 'Berlin',
+    COPENHAGEN: 'Copenhagen',
     HAMBURG: 'Hamburg',
     MALMO: 'Malmö',
     MUNICH: 'Munich',

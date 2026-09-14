@@ -1,0 +1,75 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >You have received an application from ${menteeFullName}!</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${mentorName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >You have received a mentee application from
+            <strong>${menteeFullName}</strong> from
+            <strong>ReDI ${locationNameFormatted}</strong>! Here is a message
+            from them:
+          </mj-text>
+          <mj-text mj-class="text quote">${menteeApplicationText}</mj-text>
+          <mj-text mj-class="text" padding="20px 0"
+            >Please log into ReDI Connect to review this application and visit
+            the profile of the mentee at your earliest convenience:</mj-text
+          >
+          <mj-button
+            href="${applicationsPageUrl}"
+            background-color="#F15A22"
+            color="#fff"
+            font-size="16px"
+            font-weight="bold"
+            border-radius="4px"
+            padding="16px 24px"
+            align="center"
+            line-height="120%"
+            text-decoration="none"
+          >
+            Review Application
+          </mj-button>
+          <mj-text mj-class="text"
+            ><strong>After reviewing the application:</strong></mj-text
+          >
+          <mj-text mj-class="text">
+            <ul>
+              <li>
+                If you would like to become their mentor, please
+                <strong>accept the application</strong> and suggest a date and
+                time for your first meeting, either online or in person. You may
+                also share your preferred contact methods (email, links, etc.).
+              </li>
+              <li>
+                If you realize that you cannot support them in the way they need
+                or are currently too busy to take on new mentees, please
+                <strong>decline the application</strong> and add a brief message
+                explaining why.
+              </li>
+            </ul>
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >Additionally, remember that you can set your mentee count capacity
+            to '0' in your profile. This will make your profile invisible to
+            mentees until you change it back when you are ready to accept
+            applications again.</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

@@ -1,0 +1,36 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >ReDI Connect: your user registration was declined</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Dear ${firstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Unfortunately, your profile has not been approved. Most likely,
+            this has been discussed with you during your conversation with one
+            of our ReDI Talent Success team members.</mj-text
+          >
+
+          <mj-text mj-class="text paragraph"
+            >If you need further clarification, please reach out to us at
+            <a href="mailto:connectdk@redi-school.org" class="text-link"
+              >connectdk@redi-school.org</a
+            >
+            so that we can get in touch with you.</mj-text
+          >
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

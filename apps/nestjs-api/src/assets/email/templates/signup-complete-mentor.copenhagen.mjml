@@ -1,0 +1,43 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline">Sign-up complete!</mj-text>
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${firstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Great news - you're officially signed up!</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Your next step is to fill out your profile. Please
+            <a href="${loginPageUrl}" class="text-link"
+              >log into your account</a
+            >
+            and complete all the steps from the stepper at the top of your
+            profile page.
+          </mj-text>
+
+          <mj-text mj-class="text paragraph"
+            >After submitting your profile for review, please
+            <a href="mailto:connectdk@redi-school.org" class="text-link"
+              >contact the ReDI Copenhagen team</a
+            >
+            to arrange a quick onboarding session. This is the last step before
+            your profile will become visible to mentees.</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

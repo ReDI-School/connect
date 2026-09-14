@@ -1,4 +1,5 @@
 import { RediLocation } from '@talent-connect/data-access'
+import { getRediConnectLocationDetails } from '@talent-connect/shared-config'
 
 export const ONBOARDING_STEPS = [
   {
@@ -53,25 +54,36 @@ export const ONBOARDING_STEPS = [
           you'll be able to find a mentor.
         </>
       ),
-      mentor: (rediLocation?: RediLocation) => (
-        <>
-          <strong>Thanks for sending us your profile!</strong> We're reviewing
-          it and will email you once it's done. While you're waiting, pick a
-          time for your{' '}
-          <a
-            href={
-              rediLocation === RediLocation.Malmo
-                ? 'https://calendar.app.google/u7EEPxtDVqif32Gz7'
-                : 'https://calendar.app.google/9rdEH1MKqz3VqGoj6'
-            }
-            target="__blank"
-          >
-            onboarding call
-          </a>
-          . After the call and profile approval, students can apply to be your
-          mentee!
-        </>
-      ),
+      mentor: (rediLocation?: RediLocation) => {
+        const locationDetails = getRediConnectLocationDetails(rediLocation)
+        return (
+          <>
+            <strong>Thanks for sending us your profile!</strong> We're reviewing
+            it and will email you once it's done. While you're waiting,{' '}
+            {locationDetails.mentorOnboardingCalendarUrl ? (
+              <>
+                pick a time for your{' '}
+                <a
+                  href={locationDetails.mentorOnboardingCalendarUrl}
+                  target="__blank"
+                >
+                  onboarding call
+                </a>
+              </>
+            ) : (
+              <>
+                contact us at{' '}
+                <a href={`mailto:${locationDetails.contactEmail}`}>
+                  {locationDetails.contactEmail}
+                </a>{' '}
+                to arrange your onboarding call
+              </>
+            )}
+            . After the call and profile approval, students can apply to be your
+            mentee!
+          </>
+        )
+      },
       corporateMentor: (
         <>
           <strong>Thanks for sending us your profile!</strong> We are reviewing
@@ -84,42 +96,47 @@ export const ONBOARDING_STEPS = [
   {
     name: `You're all set!`,
     message: {
-      mentee: (rediLocation: RediLocation) => (
-        <>
-          <strong>Congratulations!</strong> Your profile has been approved. You
-          are now ready to{' '}
-          <a href="/app/find-a-mentor/" target="_blank" rel="noreferrer">
-            find a mentor
-          </a>
-          . If you have questions, please check our{' '}
-          <a href="/faq" target="_blank" rel="noreferrer">
-            FAQ
-          </a>
-          ,{' '}
-          <a
-            href={
-              rediLocation === RediLocation.Malmo
-                ? 'mailto:career.sweden@redi-school.org'
-                : 'mailto:career@redi-school.org'
-            }
-          >
-            contact us
-          </a>{' '}
-          or{' '}
-          <a
-            href={
-              rediLocation === RediLocation.Malmo
-                ? 'https://calendar.app.google/u7EEPxtDVqif32Gz7'
-                : 'https://calendar.app.google/Q4sYTuqioz6t6ZXHA'
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
-            book a call
-          </a>{' '}
-          with our Mentorship Program Manager.
-        </>
-      ),
+      mentee: (rediLocation: RediLocation) => {
+        const locationDetails = getRediConnectLocationDetails(rediLocation)
+        return (
+          <>
+            <strong>Congratulations!</strong> Your profile has been approved.
+            You are now ready to{' '}
+            <a href="/app/find-a-mentor/" target="_blank" rel="noreferrer">
+              find a mentor
+            </a>
+            . If you have questions, please check our{' '}
+            <a href="/faq" target="_blank" rel="noreferrer">
+              FAQ
+            </a>
+            {locationDetails.menteeSupportCalendarUrl ? (
+              <>
+                ,{' '}
+                <a href={`mailto:${locationDetails.contactEmail}`}>
+                  contact us
+                </a>{' '}
+                or{' '}
+                <a
+                  href={locationDetails.menteeSupportCalendarUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  book a call
+                </a>{' '}
+                with our Mentorship Program Manager.
+              </>
+            ) : (
+              <>
+                , or contact our Mentorship Program Manager at{' '}
+                <a href={`mailto:${locationDetails.contactEmail}`}>
+                  {locationDetails.contactEmail}
+                </a>
+                .
+              </>
+            )}
+          </>
+        )
+      },
       mentor: (rediLocation?: RediLocation) => (
         <>
           <strong>Congratulations!</strong> Your profile has been approved.

@@ -1,0 +1,48 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline">This time it wasn't a match</mj-text>
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Dear ${menteeName},</mj-text
+          >
+
+          <mj-text mj-class="text paragraph"
+            >Unfortunately ${mentorName} cannot accept your mentorship
+            application at this time.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >They provided the following reason and message for you:</mj-text
+          >
+
+          <mj-text mj-class="text quote">${reasonForDecline}</mj-text>
+          <mj-text mj-class="text quote">${optionalMessageToMentee}</mj-text>
+
+          <mj-text mj-class="text paragraph" padding="20px 0"
+            >Even if this match did not work out, we still have many amazing
+            mentors waiting for your application. So please have a look and
+            apply to another mentor who might be an even better match for
+            you.</mj-text
+          >
+
+          <mj-text mj-class="text paragraph"
+            >If you need any support in the process, please reach out to us at
+            <a href="mailto:connectdk@redi-school.org" class="text-link"
+              >connectdk@redi-school.org</a
+            >.</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

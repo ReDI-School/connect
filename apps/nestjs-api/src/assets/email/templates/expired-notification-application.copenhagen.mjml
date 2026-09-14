@@ -1,0 +1,52 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline"
+            >${menteeName}’s mentee application to you has expired!</mj-text
+          >
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${mentorName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >${menteeName}, who applied to become your mentee has also applied
+            to another mentor. This other mentor has just accepted their
+            application.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >The application to you from ${menteeName} has therefore expired and
+            you won’t see it any longer in ReDI Connect.
+          </mj-text>
+          <mj-text mj-class="text paragraph"
+            >But don’t worry: we’re sure you will receive another application
+            from a mentee soon. Just make sure to review and accept their
+            application as soon as possible, so that next time it will be you
+            who becomes their mentor :)</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >If you have any questions, always feel free to reach out to us on
+            <a href="mailto:connectdk@redi-school.org" class="text-link"
+              >connectdk@redi-school.org</a
+            >
+            or message us on Slack.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Please also feel free to post in the mentors Slack channel, if you
+            would like to connect with other mentors or exchange experiences or
+            helpful tips.</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>

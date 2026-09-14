@@ -1,0 +1,41 @@
+<mjml>
+  <mj-include path="./head.mjml" />
+  <mj-body mj-class="body">
+    <mj-wrapper background-color="#F0F0F0">
+      <mj-section />
+      <mj-section css-class="section">
+        <mj-column>
+          <mj-text mj-class="headline">Sign-up complete!</mj-text>
+          <mj-divider mj-class="divider-top" css-class="divider" />
+
+          <mj-text mj-class="text" padding="0 0 20px 0"
+            >Hi ${firstName},</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Great news - you're officially signed up!</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >Please take a moment to
+            <a href="${loginPageUrl}" class="text-link"
+              >log into your account</a
+            >
+            and <strong>fill out your profile information</strong>. This step is
+            super important because it helps students get to know you better and
+            understand how you can support them.</mj-text
+          >
+          <mj-text mj-class="text paragraph"
+            >You will receive an application from your assigned student before
+            the mentorship kick off event, make sure you
+            <strong>accept the application</strong> to continue your sessions
+            online.</mj-text
+          >
+
+          <mj-text mj-class="text">All the best,</mj-text>
+          <mj-text mj-class="text">ReDI Copenhagen Team</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="./footer.copenhagen.team.mjml" />
+      <mj-section />
+    </mj-wrapper>
+  </mj-body>
+</mjml>
