@@ -5,6 +5,7 @@
   &__row {
     display: flex;
     margin-bottom: 0.5rem;
+    overflow-wrap: anywhere;
 
     &__label {
       color: $grey;

@@ -15,7 +15,7 @@ export type FindMatchQueryVariables = Types.Exact<{
 }>;
 
 
-export type FindMatchQuery = { __typename?: 'Query', conMentorshipMatch: { __typename?: 'ConMentorshipMatch', id: string, applicationText?: string | null, expectationText?: string | null, status: Types.MentorshipMatchStatus, mentee: { __typename?: 'ConProfile', userId: string, id: string, fullName: string, firstName: string, lastName: string, email: string, languages?: Array<Types.Language> | null, categories: Array<Types.MentoringTopic>, rediLocation: Types.RediLocation, profileAvatarImageS3Key?: string | null, telephoneNumber?: string | null, linkedInProfileUrl?: string | null, slackUsername?: string | null }, mentor: { __typename?: 'ConProfile', userId: string, id: string, fullName: string, firstName: string, lastName: string, email: string, languages?: Array<Types.Language> | null, categories: Array<Types.MentoringTopic>, rediLocation: Types.RediLocation, profileAvatarImageS3Key?: string | null, telephoneNumber?: string | null, linkedInProfileUrl?: string | null, slackUsername?: string | null }, mentoringSessions: Array<{ __typename?: 'ConMentoringSession', id: string, date: any, minuteDuration: Types.MentoringSessionDuration }> } };
+export type FindMatchQuery = { __typename?: 'Query', conMentorshipMatch: { __typename?: 'ConMentorshipMatch', id: string, applicationText?: string | null, expectationText?: string | null, status: Types.MentorshipMatchStatus, mentee: { __typename?: 'ConProfile', userId: string, id: string, fullName: string, firstName: string, lastName: string, email: string, languages?: Array<Types.Language> | null, categories: Array<Types.MentoringTopic>, rediLocation: Types.RediLocation, profileAvatarImageS3Key?: string | null, telephoneNumber?: string | null, linkedInProfileUrl?: string | null, slackUsername?: string | null }, mentor: { __typename?: 'ConProfile', userId: string, id: string, fullName: string, firstName: string, lastName: string, email: string, languages?: Array<Types.Language> | null, categories: Array<Types.MentoringTopic>, rediLocation: Types.RediLocation, profileAvatarImageS3Key?: string | null, telephoneNumber?: string | null, linkedInProfileUrl?: string | null, slackUsername?: string | null }, mentoringSessions: Array<{ __typename?: 'ConMentoringSession', id: string, date: any, minuteDuration: Types.MentoringSessionDuration, meetingNotes?: string | null }> } };
 
 export type ConProfileFieldsFragment = { __typename?: 'ConProfile', userId: string, id: string, fullName: string, firstName: string, lastName: string, email: string, languages?: Array<Types.Language> | null, categories: Array<Types.MentoringTopic>, rediLocation: Types.RediLocation, profileAvatarImageS3Key?: string | null, telephoneNumber?: string | null, linkedInProfileUrl?: string | null, slackUsername?: string | null };
 
@@ -110,6 +110,7 @@ export const FindMatchDocument = `
       id
       date
       minuteDuration
+      meetingNotes
     }
   }
 }

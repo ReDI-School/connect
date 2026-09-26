@@ -46,6 +46,7 @@ query findMatch($id: ID!) {
       id
       date
       minuteDuration
+      meetingNotes
     }
   }
 }

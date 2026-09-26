@@ -7,5 +7,11 @@ class _ConMentoringSessionntityProps extends ConMentoringSessionEntityProps {}
 @InputType('CreateConMentoringSessionInput')
 export class CreateConMentoringSessionInput extends PickType(
   _ConMentoringSessionntityProps,
-  ['date', 'minuteDuration', 'menteeId', 'mentorshipMatchId'] as const
+  [
+    'date',
+    'minuteDuration',
+    'menteeId',
+    'mentorshipMatchId',
+    'meetingNotes',
+  ] as const
 ) {}

@@ -53,6 +53,7 @@ export type ConMentoringSession = {
   createdAt: Scalars['DateTime'];
   date: Scalars['DateTime'];
   id: Scalars['ID'];
+  meetingNotes?: Maybe<Scalars['String']>;
   menteeId: Scalars['ID'];
   mentorId: Scalars['ID'];
   mentorshipMatchId: Scalars['ID'];
@@ -194,6 +195,7 @@ export enum ConnectProfileStatus {
 
 export type CreateConMentoringSessionInput = {
   date: Scalars['DateTime'];
+  meetingNotes?: InputMaybe<Scalars['String']>;
   menteeId: Scalars['ID'];
   mentorshipMatchId: Scalars['ID'];
   minuteDuration: MentoringSessionDuration;
