@@ -29,6 +29,7 @@ export interface RediConnectLocationDetails {
   senderEmail: string
   contactEmail: string
   websiteUrl: string
+  mentorHubUrl?: string
   mentorOnboardingCalendarUrl?: string
   menteeSupportCalendarUrl?: string
 }
@@ -52,6 +53,8 @@ export const REDI_CONNECT_LOCATION_DETAILS: Record<
     senderEmail: 'connectdk@redi-school.org',
     contactEmail: 'connectdk@redi-school.org',
     websiteUrl: 'https://www.redi-school.org/redi-school-denmark',
+    mentorHubUrl:
+      'https://redi-school-copenhagen.gitbook.io/coaches-hub/W2pt8UQOdbMJwy6jL4dA/',
   },
   HAMBURG: GERMANY_CONNECT_LOCATION_DETAILS,
   MALMO: {

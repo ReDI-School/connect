@@ -1,8 +1,21 @@
+import { useLoadMyProfileQuery, UserType } from '@talent-connect/data-access'
 import { Heading } from '@talent-connect/shared-atomic-design-components'
+import { getRediConnectLocationDetails } from '@talent-connect/shared-config'
 import { Content } from 'react-bulma-components'
 import { LoggedIn } from '../../../components/templates'
+import { getAccessTokenFromLocalStorage } from '../../../services/auth/auth'
 
 const MentorHub = () => {
+  const loopbackUserId = getAccessTokenFromLocalStorage().userId
+  const myProfileQuery = useLoadMyProfileQuery({ loopbackUserId })
+  const profile = myProfileQuery.data?.conProfile
+  const locationDetails = getRediConnectLocationDetails(
+    profile?.userType === UserType.Mentor ? profile.rediLocation : undefined
+  )
+  const mentorHubUrl =
+    locationDetails.mentorHubUrl ||
+    'https://redi-school-1.gitbook.io/mentors-resources-hub/'
+
   return (
     <LoggedIn>
       <Heading subtitle size="small" className="double-bs">
@@ -27,11 +40,7 @@ const MentorHub = () => {
 
         <p>
           <span aria-hidden>👉</span>{' '}
-          <a
-            href="https://redi-school-1.gitbook.io/mentors-resources-hub/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={mentorHubUrl} target="_blank" rel="noreferrer">
             Access the Mentor Hub
           </a>
         </p>
