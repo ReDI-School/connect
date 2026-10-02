@@ -161,6 +161,7 @@ export const CATEGORIES = [
   { id: 'businessGerman', label: 'Business German 🇩🇪', group: 'language' },
   { id: 'english', label: 'English 🇬🇧', group: 'language' },
   { id: 'swedish', label: 'Swedish 🇸🇪', group: 'language' },
+  { id: 'danish', label: 'Danish 🇩🇰', group: 'language' },
   { id: 'graphicDesign', label: 'Graphic Design', group: 'design' },
   {
     id: 'userInterfaceDesign',
