@@ -4,6 +4,7 @@ import {
   ConnectProfileStatus,
   ConProfileEntity,
   MentorshipMatchStatus,
+  RediLocation,
   UserType,
 } from '@talent-connect/common-types'
 import { format as formatDate } from 'date-fns'
@@ -215,8 +216,10 @@ export class ReminderEmailsService {
         result[key] = {
           menteeFirstName: mentee?.props.firstName,
           menteeEmail: mentee?.props.email,
+          menteeRediLocation: mentee?.props.rediLocation,
           mentorFirstName: mentor?.props.firstName,
           mentorEmail: mentor?.props.email,
+          mentorRediLocation: mentor?.props.rediLocation,
         }
       },
       []
@@ -315,8 +318,10 @@ export class ReminderEmailsService {
           mentorshipMatchId: value.mentorshipMatchId,
           menteeFirstName: mentee?.props.firstName,
           menteeEmail: mentee?.props.email,
+          menteeRediLocation: mentee?.props.rediLocation,
           mentorFirstName: mentor?.props.firstName,
           mentorEmail: mentor?.props.email,
+          mentorRediLocation: mentor?.props.rediLocation,
           matchMadeActiveOn: value.matchMadeActiveOn
             ? formatDate(value.matchMadeActiveOn, 'PPP')
             : '',
@@ -384,6 +389,7 @@ export class ReminderEmailsService {
         result[key] = {
           mentorEmail: mentor?.props.email,
           mentorFirstName: mentor?.props.firstName,
+          mentorRediLocation: mentor?.props.rediLocation,
           menteeFirstName: mentee?.props.firstName,
           menteeFullName: mentee?.props.fullName,
           matchDate: formatDate(new Date(value['matchDate']), 'PPP'),
@@ -399,11 +405,15 @@ export class ReminderEmailsService {
     userType,
     email,
     firstName,
+    rediLocation,
   }: {
     userType: UserType
     email: string
     firstName: string
+    rediLocation: RediLocation
   }) {
+    if (rediLocation === RediLocation.COPENHAGEN) return
+
     const sfEmailTemplateDeveloperName =
       userType === UserType.MENTOR
         ? 'Mentor_Profile_Completion_Reminder_1711714790523'
@@ -449,8 +459,11 @@ export class ReminderEmailsService {
   async sendApplyToMentorReminder({
     email,
     firstName,
+    rediLocation,
     isSecondReminder = false,
   }) {
+    if (rediLocation === RediLocation.COPENHAGEN) return
+
     const sfEmailTemplateDeveloperName = !isSecondReminder
       ? 'Mentee_Apply_To_A_Mentor_Reminder_1_1695975263767'
       : 'Mentee_Apply_To_A_Mentor_Reminder_2_1695975868066'
@@ -500,7 +513,10 @@ export class ReminderEmailsService {
     firstName,
     menteeOrMentorFirstName,
     userType,
+    rediLocation,
   }) {
+    if (rediLocation === RediLocation.COPENHAGEN) return
+
     const sfEmailTemplateDeveloperName =
       userType === UserType.MENTOR
         ? 'Mentor_Follow_Up_On_Long_Term_Mentorship_1711363451370'
@@ -543,7 +559,13 @@ export class ReminderEmailsService {
     return { message: 'Email sent' }
   }
 
-  async sendMenteesPlatformAndNewMentorsReminder({ email, firstName }) {
+  async sendMenteesPlatformAndNewMentorsReminder({
+    email,
+    firstName,
+    rediLocation,
+  }) {
+    if (rediLocation === RediLocation.COPENHAGEN) return
+
     const sfEmailTemplateDeveloperName =
       'Mentee_Platform_And_New_Mentors_Reminder_1711367982313'
 
@@ -587,12 +609,20 @@ export class ReminderEmailsService {
       mentorshipMatchId,
       menteeFirstName,
       menteeEmail,
+      menteeRediLocation,
       mentorFirstName,
       mentorEmail,
+      mentorRediLocation,
       matchMadeActiveOn,
     },
     mentorshipMatchAgeInDays
   ) {
+    if (
+      menteeRediLocation === RediLocation.COPENHAGEN &&
+      mentorRediLocation === RediLocation.COPENHAGEN
+    )
+      return
+
     const sfMenteeEmailTemplateDeveloperName =
       mentorshipMatchAgeInDays === 14
         ? 'Mentee_Log_Mentoring_Sessions_Reminder_1_1711114670729'
@@ -665,24 +695,30 @@ export class ReminderEmailsService {
       html: mentorSanitizedHtml,
     }
 
-    try {
-      await this.transporter.sendMail(menteeParams)
-      console.log('Mentee email sent successfully')
-    } catch (err) {
-      console.error('Error sending mentee email:', err)
+    if (menteeRediLocation !== RediLocation.COPENHAGEN) {
+      try {
+        await this.transporter.sendMail(menteeParams)
+        console.log('Mentee email sent successfully')
+      } catch (err) {
+        console.error('Error sending mentee email:', err)
+      }
     }
 
-    try {
-      await this.transporter.sendMail(mentorParams)
-      console.log('Mentor email sent successfully')
-    } catch (err) {
-      console.error('Error sending mentor email:', err)
+    if (mentorRediLocation !== RediLocation.COPENHAGEN) {
+      try {
+        await this.transporter.sendMail(mentorParams)
+        console.log('Mentor email sent successfully')
+      } catch (err) {
+        console.error('Error sending mentor email:', err)
+      }
     }
 
     return { message: 'Emails sent' }
   }
 
   async sendMentorPendingApplicationReminder({ match }) {
+    if (match.mentorRediLocation === RediLocation.COPENHAGEN) return
+
     const sfEmailTemplateDeveloperName =
       'Mentor_Pending_Mentorship_Application_Reminder_1711365045962'
 

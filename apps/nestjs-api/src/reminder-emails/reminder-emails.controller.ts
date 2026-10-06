@@ -22,6 +22,7 @@ export class ReminderEmailsController {
           userType: UserType.MENTOR,
           email: mentor.props.email,
           firstName: mentor.props.firstName,
+          rediLocation: mentor.props.rediLocation,
         })
       })
     }
@@ -45,6 +46,7 @@ export class ReminderEmailsController {
           userType: UserType.MENTEE,
           email: mentee.props.email,
           firstName: mentee.props.firstName,
+          rediLocation: mentee.props.rediLocation,
         })
       })
     }
@@ -69,6 +71,7 @@ export class ReminderEmailsController {
         await this.reminderEmailsService.sendApplyToMentorReminder({
           email: mentee.props.email,
           firstName: mentee.props.firstName,
+          rediLocation: mentee.props.rediLocation,
         })
       })
     }
@@ -86,6 +89,7 @@ export class ReminderEmailsController {
         await this.reminderEmailsService.sendApplyToMentorReminder({
           email: mentee.props.email,
           firstName: mentee.props.firstName,
+          rediLocation: mentee.props.rediLocation,
           isSecondReminder: true,
         })
       })
@@ -108,6 +112,8 @@ export class ReminderEmailsController {
           userType: UserType.MENTEE,
           email: threeMonthsOldMentorshipMatches[match].menteeEmail,
           firstName: threeMonthsOldMentorshipMatches[match].menteeFirstName,
+          rediLocation:
+            threeMonthsOldMentorshipMatches[match].menteeRediLocation,
           menteeOrMentorFirstName:
             threeMonthsOldMentorshipMatches[match].mentorFirstName,
         })
@@ -117,6 +123,8 @@ export class ReminderEmailsController {
           userType: UserType.MENTOR,
           email: threeMonthsOldMentorshipMatches[match].mentorEmail,
           firstName: threeMonthsOldMentorshipMatches[match].mentorFirstName,
+          rediLocation:
+            threeMonthsOldMentorshipMatches[match].mentorRediLocation,
           menteeOrMentorFirstName:
             threeMonthsOldMentorshipMatches[match].menteeFirstName,
         })
@@ -142,6 +150,7 @@ export class ReminderEmailsController {
           {
             email: mentee.props.email,
             firstName: mentee.props.firstName,
+            rediLocation: mentee.props.rediLocation,
           }
         )
       })
