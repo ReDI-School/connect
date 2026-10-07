@@ -97,13 +97,6 @@ function Mentorship() {
             profile={viewProfile}
             linkTo={`/app/mentorships/profile/${viewProfile.id}`}
           />
-          <MContacts profile={viewProfile} className="is-hidden-tablet" />
-          <MSessions
-            sessions={viewMatch.mentoringSessions}
-            menteeId={viewProfile.userId}
-            editable={currentUserIsMentor}
-            mentorshipMatchId={matchId}
-          />
           <ReportProblem
             type={myProfile.userType}
             redProfileId={viewProfile.id}
@@ -111,6 +104,13 @@ function Mentorship() {
         </Columns.Column>
         <Columns.Column size={8}>
           <MContacts profile={viewProfile} className="is-hidden-mobile" />
+          <MContacts profile={viewProfile} className="is-hidden-tablet" />
+          <MSessions
+            sessions={viewMatch.mentoringSessions}
+            menteeId={viewProfile.userId}
+            editable={currentUserIsMentor}
+            mentorshipMatchId={matchId}
+          />
         </Columns.Column>
       </Columns>
     </LoggedIn>

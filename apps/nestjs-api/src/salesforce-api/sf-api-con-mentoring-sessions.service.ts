@@ -29,6 +29,7 @@ export class SfApiConMentoringSessionsService {
     const cleanProps = pick(record.props, [
       'Date__c',
       'Durations_in_Minutes__c',
+      'Meeting_Notes__c',
       'Mentor__c',
       'Mentee__c',
       'Mentorship_Match__c',

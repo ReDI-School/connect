@@ -24,6 +24,7 @@ export class ConMentoringSessionMapper
       ]
     props.mentorId = raw.props.Mentor__c
     props.menteeId = raw.props.Mentee__c
+    props.meetingNotes = raw.props.Meeting_Notes__c
     props.mentorshipMatchId = raw.props.Mentorship_Match__c
     props.createdAt = raw.props.CreatedDate
     props.updatedAt = raw.props.LastModifiedDate
@@ -42,6 +43,7 @@ export class ConMentoringSessionMapper
     props.Durations_in_Minutes__c = parseInt(
       srcProps.minuteDuration.replace('MIN', '')
     )
+    props.Meeting_Notes__c = srcProps.meetingNotes
     props.Mentor__c = srcProps.mentorId
     props.Mentee__c = srcProps.menteeId
     props.Mentorship_Match__c = srcProps.mentorshipMatchId
