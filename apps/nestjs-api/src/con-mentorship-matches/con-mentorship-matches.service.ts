@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common'
 import {
   ConMentorshipMatchEntity,
   ConMentorshipMatchEntityProps,
@@ -17,6 +23,8 @@ import { ConMentorshipMatchesMarkAsDismissedInputDto } from './dto/con-mentorshi
 
 @Injectable()
 export class ConMentorshipMatchesService {
+  private readonly logger = new Logger(ConMentorshipMatchesService.name)
+
   constructor(
     private readonly api: SfApiConMentorshipMatchesService,
     private readonly conProfilesServices: ConProfilesService,
@@ -28,8 +36,8 @@ export class ConMentorshipMatchesService {
   //   return 'This action adds a new conMentorshipMatch'
   // }
 
-  async findAll(filter: any = {}) {
-    const persistedEntities = await this.api.getAll(filter)
+  async findAll(filter: any = {}, options: { skipCache?: boolean } = {}) {
+    const persistedEntities = await this.api.getAll(filter, options)
 
     const entities: ConMentorshipMatchEntity[] = persistedEntities.map(
       (source) => this.mapper.fromPersistence(source)
@@ -38,8 +46,8 @@ export class ConMentorshipMatchesService {
     return entities
   }
 
-  async findOne(filter: any = {}) {
-    const persistedEntities = await this.findAll(filter)
+  async findOne(filter: any = {}, options: { skipCache?: boolean } = {}) {
+    const persistedEntities = await this.findAll(filter, options)
     if (persistedEntities.length > 0) {
       return persistedEntities[0]
     } else {
@@ -72,11 +80,27 @@ export class ConMentorshipMatchesService {
 
   async acceptMentorship(input: ConMentorshipMatchesAcceptMentorshipInputDto) {
     // TODO: enforce auth
-    const mentorshipMatch = await this.findOneById(input.mentorshipMatchId)
+    const mentorshipMatch = await this.findOne(
+      { Id: input.mentorshipMatchId },
+      { skipCache: true }
+    )
 
     if (mentorshipMatch.props.status !== MentorshipMatchStatus.APPLIED) {
       throw new Error(
         'Mentorship match is not in APPLIED state and cannot be accepted.'
+      )
+    }
+
+    const acceptedMentorships = await this.findAll(
+      {
+        Mentee__c: mentorshipMatch.props.menteeId,
+        Status__c: MentorshipMatchStatus.ACCEPTED,
+      },
+      { skipCache: true }
+    )
+    if (acceptedMentorships.length > 0) {
+      throw new ConflictException(
+        'This mentee already has an accepted mentorship.'
       )
     }
 
@@ -89,7 +113,7 @@ export class ConMentorshipMatchesService {
       }),
     ])
 
-    const entity = await this.findOne({ Id: input.mentorshipMatchId })
+    const entity = mentorshipMatch
 
     entity.props.status = MentorshipMatchStatus.ACCEPTED
     entity.props.matchMadeActiveOn = DateTime.utc().toString()
@@ -107,32 +131,47 @@ export class ConMentorshipMatchesService {
       mentorEmail: mentorProfile.props.email,
     })
 
-    const menteePendingMenteeApplications = await this.findAll({
-      Mentee__c: menteeProfile.props.userId,
-      Status__c: MentorshipMatchStatus.APPLIED,
-    })
+    const menteePendingMenteeApplications = await this.findAll(
+      {
+        Mentee__c: menteeProfile.props.userId,
+        Status__c: MentorshipMatchStatus.APPLIED,
+      },
+      { skipCache: true }
+    )
 
-    menteePendingMenteeApplications.forEach(async (match) => {
-      match.props.status =
-        MentorshipMatchStatus.INVALIDATED_AS_OTHER_MENTOR_ACCEPTED
-      this.api.update(this.mapper.toPersistence(match))
-      const [menteeProfile, mentorProfile] = await Promise.all([
-        this.conProfilesServices.findOne({
-          'Contact__r.Id': match.props.menteeId,
-        }),
-        this.conProfilesServices.findOne({
-          'Contact__r.Id': match.props.mentorId,
-        }),
-      ])
-      this.emailService.sendNotificationToMentorThatPendingApplicationExpiredSinceOtherMentorAccepted(
-        {
-          recipient: mentorProfile.props.email,
-          mentorName: mentorProfile.props.firstName,
-          menteeName: menteeProfile.props.fullName,
-          rediLocation: mentorProfile.props.rediLocation,
+    // Catch each failure so every invalidation finishes before we report an error.
+    const failedInvalidations = await Promise.all(
+      menteePendingMenteeApplications.map(async (match) => {
+        try {
+          match.props.status =
+            MentorshipMatchStatus.INVALIDATED_AS_OTHER_MENTOR_ACCEPTED
+          await this.api.update(this.mapper.toPersistence(match))
+          const mentorProfile = await this.conProfilesServices.findOne({
+            'Contact__r.Id': match.props.mentorId,
+          })
+          this.emailService.sendNotificationToMentorThatPendingApplicationExpiredSinceOtherMentorAccepted(
+            {
+              recipient: mentorProfile.props.email,
+              mentorName: mentorProfile.props.firstName,
+              menteeName: menteeProfile.props.fullName,
+              rediLocation: mentorProfile.props.rediLocation,
+            }
+          )
+        } catch (error) {
+          this.logger.error(
+            `Could not finish invalidation for application ${match.props.id} after accepting mentorship ${entity.props.id}`,
+            error instanceof Error ? error.stack : String(error)
+          )
+          return match.props.id
         }
+      })
+    )
+
+    if (failedInvalidations.some((id) => id !== undefined)) {
+      throw new InternalServerErrorException(
+        'The mentorship was accepted, but cleanup of its other applications failed.'
       )
-    })
+    }
 
     return result
   }
