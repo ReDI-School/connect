@@ -80,7 +80,9 @@ export class SfApiRepository {
   private findRecordsOfObjectQueue = async.queue(
     async (task: FindRecordsParams, callback) => {
       const cacheKey = JSON.stringify(task)
-      const cachedResult = await this.cacheManager.get(cacheKey)
+      const cachedResult = task.skipCache
+        ? undefined
+        : await this.cacheManager.get(cacheKey)
       if (cachedResult) {
         return callback(cachedResult)
       }
@@ -168,7 +170,9 @@ export class SfApiRepository {
 
       result.on('end', async () => {
         console.log('[SfApiRepository]', `Found ${records.length} records`)
-        await this.cacheManager.set(cacheKey, records, 60 * 5)
+        if (!task.skipCache) {
+          await this.cacheManager.set(cacheKey, records, 60 * 5)
+        }
         callback(records)
       })
 
@@ -327,4 +331,5 @@ interface FindRecordsParams {
   offset?: number
   childObjects?: { name: string; fields: string[]; orderBy?: OrderByTuple }[]
   rawWhereClause?: string
+  skipCache?: boolean
 }

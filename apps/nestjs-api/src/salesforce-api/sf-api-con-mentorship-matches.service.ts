@@ -10,11 +10,15 @@ import { SfApiRepository } from './sf-api.repository'
 export class SfApiConMentorshipMatchesService {
   constructor(private readonly repository: SfApiRepository) {}
   // constructor(private readonly repository: SalesforceApiRepository) {}
-  async getAll(filter: any = {}): Promise<ConMentorshipMatchRecord[]> {
+  async getAll(
+    filter: any = {},
+    options: { skipCache?: boolean } = {}
+  ): Promise<ConMentorshipMatchRecord[]> {
     const rawRecords = await this.repository.findRecordsOfObject({
       objectName: ConMentorshipMatchRecord.metadata.SALESFORCE_OBJECT_NAME,
       objectFields: ConMentorshipMatchRecord.metadata.SALESFORCE_OBJECT_FIELDS,
       filter,
+      skipCache: options.skipCache,
     })
     const conMentorshipMatchesRecord = rawRecords.map((rawRecord) =>
       ConMentorshipMatchRecord.create(rawRecord)
